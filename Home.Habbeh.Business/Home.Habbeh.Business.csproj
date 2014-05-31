@@ -40,6 +40,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="User.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Home.Habbeh.DataAccess\Home.Habbeh.DataAccess.csproj">
+      <Project>{565F2E72-F585-4DE7-AC51-6E911C24E138}</Project>
+      <Name>Home.Habbeh.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Home.Habbeh.Entity\Home.Habbeh.Entity.csproj">
+      <Project>{295BEA8D-4950-4B67-B4E6-67807D4A48AD}</Project>
+      <Name>Home.Habbeh.Entity</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

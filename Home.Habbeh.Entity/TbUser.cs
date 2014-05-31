@@ -17,5 +17,6 @@ namespace Home.Habbeh.Entity
         public byte[] Picture { get; set; }
         public DateTime RegisterDate { get; set; }
         public int StatusCode { get; set; }
+        public string Password { get; set; }
     }
 }
