@@ -26,37 +26,37 @@ namespace Home.Habbeh.Presentation
         [WebMethod]
         public void Register(string username, string email, string password)
         {
-            new Business.User().Register(username, email, password);
+            Business.User.Register(username, email, password);
         }
 
         [WebMethod]
         public void SendForgiveInformation(string email)
         {
-            new Business.User().SendForgiveInformation(email);
+            Business.User.SendForgiveInformation(email);
         }
 
         [WebMethod]
         public TbUser Login(string username, string password)
         {
-            return new Business.User().Login(username, password);
+            return Business.User.Login(username, password);
         }
 
         [WebMethod]
         public TbUser GetProfile(int userId)
         {
-            return new Business.User().GetProfile(userId);
+            return Business.User.GetProfile(userId);
         }
 
         [WebMethod]
         public List<TbUser> Search(string searchText)
         {
-            return new Business.User().Search(searchText);
+            return Business.User.Search(searchText);
         }
 
         [WebMethod]
         public void ChangeStatus(int userId, int statusCode, int changerUserId)
         {
-            new Business.User().ChangeStatus(userId, statusCode, changerUserId);
+            Business.User.ChangeStatus(userId, statusCode, changerUserId);
         }
 
         [WebMethod]

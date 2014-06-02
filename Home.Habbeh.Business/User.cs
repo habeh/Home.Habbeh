@@ -6,47 +6,61 @@ using Home.Habbeh.Entity;
 
 namespace Home.Habbeh.Business
 {
-    public class User
+    public static class User
     {
-        public void Register(string username, string email, string password)
+        public static void Register(string username, string email, string password)
         {
+            using (DataAccess.User userData = new DataAccess.User())
+            {
+                Entity.TbUser user = new TbUser();
+                user.UserName = username;
+                user.Email = email;
+                user.Password = password;
+                user.StatusId = 1;
+                user.RegisterDate = DateTime.Now;
+                /*TODO : Check Duplicate Email and UserName*/
+
+                /*Create User*/
+                userData.Create(user);
+            }
+
+            /*Send Verification Email*/
             SendEmail(email, "Verification");
-            new TbUser() { Email = "RoomezOnline@yahoo.com", UserName = "roomezonline", StatusId = 1 };
         }
 
-        public void SendForgiveInformation(string email)
+        public static void SendForgiveInformation(string email)
         {
             SendEmail(email, "Forgive");
         }
 
-        public TbUser Login(string username, string password)
+        public static TbUser Login(string username, string password)
         {
             return new TbUser() { Email = "RoomezOnline@yahoo.com", UserName = "roomezonline", StatusId = 1 };
         }
 
-        public TbUser GetProfile(int userId)
+        public static TbUser GetProfile(int userId)
         {
             return new TbUser() { Email = "RoomezOnline@yahoo.com", UserName = "roomezonline", StatusId = 1 };
         }
 
-        public List<TbUser> Search(string searchText)
+        public static List<TbUser> Search(string searchText)
         {
             return new List<TbUser>() { 
                 new TbUser() { Email = "RoomezOnline@yahoo.com", UserName = "roomezonline", StatusId = 1 },
                 new TbUser() { Email = "karim_medusa@yahoo.com", UserName = "karim_medusa", StatusId = 1 }};
         }
 
-        public void ChangeStatus(int userId, int statusCode,int changerUserId)
+        public static void ChangeStatus(int userId, int statusCode, int changerUserId)
         {
 
         }
 
-        public void Follow(int userId, int followerId)
+        public static void Follow(int userId, int followerId)
         {
 
         }
 
-        private void SendEmail(string email, string data)
+        private static void SendEmail(string email, string data)
         {
 
         }
