@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
-  <Comment CommentText="DB Version : 0.1">
+  <Comment CommentText="DB Version : 0.2">
     <Position X="0.562" Y="0.5" Height="0.313" Width="1.7" />
   </Comment>
   <Class Name="Home.Habbeh.Entity.TbAppInfo">
@@ -13,21 +13,21 @@
   <Class Name="Home.Habbeh.Entity.TbCategory">
     <Position X="2.5" Y="1" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAEAAAAAgAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAACAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>TbCategory.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Home.Habbeh.Entity.TbComment">
     <Position X="8.5" Y="1" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAACAgAABAAAAAAAgAAAAAAAAEAAAAAAAAAAA=</HashCode>
+      <HashCode>AAACAAAAACAgAAAAAAAAAAgAAAAAAAAEAAAAgAAAAAA=</HashCode>
       <FileName>TbComment.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Home.Habbeh.Entity.TbCommentType">
     <Position X="6.5" Y="1" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAEAAAAAgAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAACAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>TbCommentType.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -48,36 +48,43 @@
   <Class Name="Home.Habbeh.Entity.TbRole">
     <Position X="6.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAEAAAAAgAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAACAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>TbRole.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Home.Habbeh.Entity.TbStatus">
     <Position X="4.25" Y="4" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAEAAAAAgAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAACAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>TbStatus.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Home.Habbeh.Entity.TbUser">
-    <Position X="4.25" Y="1" Width="2" />
+    <Position X="4.25" Y="0.75" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAACgEAAACAAAAAAAAIAAAAAAAAQAAAAIQAAAAAAAAg=</HashCode>
+      <HashCode>AAACgEAIACAAAAAAAAIAAAAAAAAQAAACAQAAAAAAAAg=</HashCode>
       <FileName>TbUser.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Home.Habbeh.Entity.TbUserFollow">
     <Position X="2.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAIAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAACAAAAAIAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>TbUserFollow.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Home.Habbeh.Entity.TbUserRole">
     <Position X="2.5" Y="4" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAAAAAAAAAAgAAAAAQAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAACAAIAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>TbUserRole.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Home.Habbeh.Entity.TbContact">
+    <Position X="6.25" Y="4" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAEACAgAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TbContact.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

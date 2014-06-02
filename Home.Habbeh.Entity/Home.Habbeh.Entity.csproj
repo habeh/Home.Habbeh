@@ -44,6 +44,7 @@
     <Compile Include="TbCategory.cs" />
     <Compile Include="TbComment.cs" />
     <Compile Include="TbCommentType.cs" />
+    <Compile Include="TbContact.cs" />
     <Compile Include="TbMessage.cs" />
     <Compile Include="TbLike.cs" />
     <Compile Include="TbRole.cs" />

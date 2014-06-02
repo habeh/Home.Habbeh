@@ -11,7 +11,7 @@ namespace Home.Habbeh.Business
         public void Register(string username, string email, string password)
         {
             SendEmail(email, "Verification");
-            new TbUser() { Email = "RoomezOnline@yahoo.com", UserName = "roomezonline", StatusCode = 1 };
+            new TbUser() { Email = "RoomezOnline@yahoo.com", UserName = "roomezonline", StatusId = 1 };
         }
 
         public void SendForgiveInformation(string email)
@@ -21,19 +21,19 @@ namespace Home.Habbeh.Business
 
         public TbUser Login(string username, string password)
         {
-            return new TbUser() { Email = "RoomezOnline@yahoo.com", UserName = "roomezonline", StatusCode = 1 };
+            return new TbUser() { Email = "RoomezOnline@yahoo.com", UserName = "roomezonline", StatusId = 1 };
         }
 
         public TbUser GetProfile(int userId)
         {
-            return new TbUser() { Email = "RoomezOnline@yahoo.com", UserName = "roomezonline", StatusCode = 1 };
+            return new TbUser() { Email = "RoomezOnline@yahoo.com", UserName = "roomezonline", StatusId = 1 };
         }
 
         public List<TbUser> Search(string searchText)
         {
             return new List<TbUser>() { 
-                new TbUser() { Email = "RoomezOnline@yahoo.com", UserName = "roomezonline", StatusCode = 1 },
-                new TbUser() { Email = "karim_medusa@yahoo.com", UserName = "karim_medusa", StatusCode = 1 }};
+                new TbUser() { Email = "RoomezOnline@yahoo.com", UserName = "roomezonline", StatusId = 1 },
+                new TbUser() { Email = "karim_medusa@yahoo.com", UserName = "karim_medusa", StatusId = 1 }};
         }
 
         public void ChangeStatus(int userId, int statusCode,int changerUserId)

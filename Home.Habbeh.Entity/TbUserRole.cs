@@ -9,6 +9,6 @@ namespace Home.Habbeh.Entity
     {
         public int Id { get; set; }
         public int UserId { get; set; }
-        public int RoleCode { get; set; }
+        public int RoleId { get; set; }
     }
 }

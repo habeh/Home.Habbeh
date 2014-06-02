@@ -14,9 +14,9 @@ namespace Home.Habbeh.Entity
         public string Email { get; set; }
         public string PhoneNo { get; set; }
         public string Location { get; set; }
-        public byte[] Picture { get; set; }
+        public string Picture { get; set; }
         public DateTime RegisterDate { get; set; }
-        public int StatusCode { get; set; }
+        public int StatusId { get; set; }
         public string Password { get; set; }
     }
 }

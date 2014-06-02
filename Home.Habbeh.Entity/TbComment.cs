@@ -12,7 +12,7 @@ namespace Home.Habbeh.Entity
         public int UserId { get; set; }
         public int MessageId { get; set; }
         public DateTime RegisterDate { get; set; }
-        public int CommentTypeCode { get; set; }
+        public int CommentTypeId { get; set; }
         public string Description { get; set; }
     }
 }
