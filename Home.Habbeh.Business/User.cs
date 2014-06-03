@@ -8,24 +8,24 @@ namespace Home.Habbeh.Business
 {
     public static class User
     {
-        public static void Register(string username, string email, string password)
+        public static void Register(TbUser user)
         {
             using (DataAccess.User userData = new DataAccess.User())
             {
-                Entity.TbUser user = new TbUser();
-                user.UserName = username;
-                user.Email = email;
-                user.Password = password;
-                user.StatusId = 1;
-                user.RegisterDate = DateTime.Now;
+                Entity.TbUser newUser = new TbUser();
+                newUser.UserName = user.UserName;
+                newUser.Email = user.Email;
+                newUser.Password = user.Password;
+                newUser.StatusId = 1;
+                newUser.RegisterDate = DateTime.Now;
                 /*TODO : Check Duplicate Email and UserName*/
 
                 /*Create User*/
-                userData.Create(user);
+                userData.Create(newUser);
             }
 
             /*Send Verification Email*/
-            SendEmail(email, "Verification");
+            SendEmail(user.Email, "Verification");
         }
 
         public static void SendForgiveInformation(string email)
@@ -33,36 +33,48 @@ namespace Home.Habbeh.Business
             SendEmail(email, "Forgive");
         }
 
-        public static TbUser Login(string username, string password)
+        public static TbUser Login(string userName, string password)
         {
-            return new TbUser() { Email = "RoomezOnline@yahoo.com", UserName = "roomezonline", StatusId = 1 };
+            using (DataAccess.User userData = new DataAccess.User())
+            {
+                TbUser user = userData.Retrieve(userName, password);
+                
+                /*clear password before send to client*/
+                user.Password = null;
+
+                return user;
+            }
         }
 
-        public static TbUser GetProfile(int userId)
+        public static TbUser GetProfile(string username)
         {
-            return new TbUser() { Email = "RoomezOnline@yahoo.com", UserName = "roomezonline", StatusId = 1 };
+            using (DataAccess.User db = new DataAccess.User())
+            {
+                return db.Retrieve(username);
+            }
         }
 
         public static List<TbUser> Search(string searchText)
         {
-            return new List<TbUser>() { 
-                new TbUser() { Email = "RoomezOnline@yahoo.com", UserName = "roomezonline", StatusId = 1 },
-                new TbUser() { Email = "karim_medusa@yahoo.com", UserName = "karim_medusa", StatusId = 1 }};
+            using (DataAccess.User db = new DataAccess.User())
+            {
+                return db.RetrieveList(searchText);
+            }
         }
 
         public static void ChangeStatus(int userId, int statusCode, int changerUserId)
         {
-
+            throw new NotImplementedException();
         }
 
         public static void Follow(int userId, int followerId)
         {
-
+            throw new NotImplementedException();
         }
 
         private static void SendEmail(string email, string data)
         {
-
+            //TODO: Email Service
         }
 
     }

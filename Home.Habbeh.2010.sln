@@ -9,18 +9,20 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Home.Habbeh.Business", "Hom
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Home.Habbeh.Presentation", "Home.Habbeh.Presentation\Home.Habbeh.Presentation.csproj", "{3B6CCC02-0467-492A-A361-6AD72A6F3A80}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessTest", "BusinessTest\BusinessTest.csproj", "{4EFFD0A8-72EE-4717-90EC-B6E584F5AB8D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Home.Habbeh.Business.Test", "Home.Habbeh.Business.Test\Home.Habbeh.Business.Test.csproj", "{6A967EE2-592D-4F32-9A56-D5D1E56C5B4C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2E0FC2B0-3716-4538-8149-FAE4B549ACA8}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1B6AF997-32F5-4BE8-81AB-46451CFD5A83}"
 	ProjectSection(SolutionItems) = preProject
-		Home.Habbeh.2010.vsmdi = Home.Habbeh.2010.vsmdi
+		Home.Habbeh.20101.vsmdi = Home.Habbeh.20101.vsmdi
 		Local.testsettings = Local.testsettings
 		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Home.Habbeh.DataAccess.Test", "Home.Habbeh.DataAccess.Test\Home.Habbeh.DataAccess.Test.csproj", "{AC3BBBB1-E746-4ED9-86F7-1969B73200A1}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
-		CategoryFile = Home.Habbeh.2010.vsmdi
+		CategoryFile = Home.Habbeh.20101.vsmdi
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,10 +45,14 @@ Global
 		{3B6CCC02-0467-492A-A361-6AD72A6F3A80}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B6CCC02-0467-492A-A361-6AD72A6F3A80}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B6CCC02-0467-492A-A361-6AD72A6F3A80}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4EFFD0A8-72EE-4717-90EC-B6E584F5AB8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4EFFD0A8-72EE-4717-90EC-B6E584F5AB8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4EFFD0A8-72EE-4717-90EC-B6E584F5AB8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4EFFD0A8-72EE-4717-90EC-B6E584F5AB8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A967EE2-592D-4F32-9A56-D5D1E56C5B4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A967EE2-592D-4F32-9A56-D5D1E56C5B4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A967EE2-592D-4F32-9A56-D5D1E56C5B4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A967EE2-592D-4F32-9A56-D5D1E56C5B4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC3BBBB1-E746-4ED9-86F7-1969B73200A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC3BBBB1-E746-4ED9-86F7-1969B73200A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC3BBBB1-E746-4ED9-86F7-1969B73200A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC3BBBB1-E746-4ED9-86F7-1969B73200A1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

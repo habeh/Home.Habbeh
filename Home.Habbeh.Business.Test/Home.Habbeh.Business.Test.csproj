@@ -6,11 +6,11 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{4EFFD0A8-72EE-4717-90EC-B6E584F5AB8D}</ProjectGuid>
+    <ProjectGuid>{6A967EE2-592D-4F32-9A56-D5D1E56C5B4C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BusinessTest</RootNamespace>
-    <AssemblyName>BusinessTest</AssemblyName>
+    <RootNamespace>Home.Habbeh.Business.Test</RootNamespace>
+    <AssemblyName>Home.Habbeh.Business.Test</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -56,6 +56,10 @@
     <ProjectReference Include="..\Home.Habbeh.Business\Home.Habbeh.Business.csproj">
       <Project>{27A186F3-46C1-4CE4-800F-4953C51F75AA}</Project>
       <Name>Home.Habbeh.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Home.Habbeh.DataAccess\Home.Habbeh.DataAccess.csproj">
+      <Project>{565F2E72-F585-4DE7-AC51-6E911C24E138}</Project>
+      <Name>Home.Habbeh.DataAccess</Name>
     </ProjectReference>
     <ProjectReference Include="..\Home.Habbeh.Entity\Home.Habbeh.Entity.csproj">
       <Project>{295BEA8D-4950-4B67-B4E6-67807D4A48AD}</Project>

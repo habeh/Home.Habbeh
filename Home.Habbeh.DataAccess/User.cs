@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Home.Habbeh.Entity;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace Home.Habbeh.DataAccess
 {
@@ -16,6 +17,7 @@ namespace Home.Habbeh.DataAccess
             con = new SqlConnection(Utility.ConnectionString);
             con.Open();
         }
+
         public void Create(TbUser user)
         {
             SqlCommand cmd = con.CreateCommand();
@@ -28,42 +30,55 @@ namespace Home.Habbeh.DataAccess
             cmd.ExecuteNonQuery();
         }
 
-        public void SendForgiveInformation(string email)
+        public TbUser Retrieve(string userName, string password)
         {
+            TbUser user = Retrieve(userName);
+            if (user.Password == password)
+                return user;
 
+            return null;
         }
 
-        public TbUser Login(string username, string password)
+        public TbUser Retrieve(string username)
         {
-            return new TbUser() { Email = "RoomezOnline@yahoo.com", UserName = "roomezonline", StatusId = 1 };
+            SqlCommand cmd = con.CreateCommand();
+            cmd.CommandText = "Select * from TbUser where UserName = @UserName";
+            cmd.Parameters.AddWithValue("@UserName", username);
+            using (IDataReader reader = cmd.ExecuteReader())
+            {
+                if (reader.Read())
+                    return TbUser.ToEntity(reader);
+            }
+            return null;
         }
 
-        public TbUser GetProfile(int userId)
+        public List<TbUser> RetrieveList(string searchText)
         {
-            return new TbUser() { Email = "RoomezOnline@yahoo.com", UserName = "roomezonline", StatusId = 1 };
+            List<TbUser> result = new List<TbUser>();
+            SqlCommand cmd = con.CreateCommand();
+            cmd.CommandText = "Select * from TbUser where UserName like @UserName";
+            cmd.Parameters.AddWithValue("@UserName", string.Format("%{0}%",searchText));
+            using (IDataReader reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                    result.Add(TbUser.ToEntity(reader));
+            }
+            return result;
         }
 
-        public List<TbUser> Search(string searchText)
+        public void Update(string userName, int statusId)
         {
-            return new List<TbUser>() { 
-                new TbUser() { Email = "RoomezOnline@yahoo.com", UserName = "roomezonline", StatusId = 1 },
-                new TbUser() { Email = "karim_medusa@yahoo.com", UserName = "karim_medusa", StatusId = 1 }};
-        }
-
-        public void ChangeStatus(int userId, int statusCode, int changerUserId)
-        {
-
-        }
-
-        public void Follow(int userId, int followerId)
-        {
-
+            SqlCommand cmd = con.CreateCommand();
+            cmd.CommandText = "Update TbUser set StatusId=@StatusId where UserName=@UserName";
+            cmd.Parameters.AddWithValue("@UserName", userName);
+            cmd.Parameters.AddWithValue("@StatusId", statusId);
+            cmd.ExecuteNonQuery();
         }
 
         public void Dispose()
         {
             if (con != null)
-            {                
+            {
                 con.Dispose();
             }
         }

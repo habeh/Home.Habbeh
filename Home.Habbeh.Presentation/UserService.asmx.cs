@@ -23,10 +23,11 @@ namespace Home.Habbeh.Presentation
             return "Hello User Service!";
         }
 
-        [WebMethod]
+        [WebMethod]        
         public void Register(string username, string email, string password)
         {
-            Business.User.Register(username, email, password);
+            TbUser user = new TbUser() { UserName = username, Email = email, Password = password };
+            Business.User.Register(user);
         }
 
         [WebMethod]
@@ -36,15 +37,15 @@ namespace Home.Habbeh.Presentation
         }
 
         [WebMethod]
-        public TbUser Login(string username, string password)
+        public TbUser Login(string userName, string password)
         {
-            return Business.User.Login(username, password);
+            return Business.User.Login(userName, password);
         }
 
         [WebMethod]
-        public TbUser GetProfile(int userId)
+        public TbUser GetProfile(string userName)
         {
-            return Business.User.GetProfile(userId);
+            return Business.User.GetProfile(userName);
         }
 
         [WebMethod]

@@ -18,5 +18,28 @@ namespace Home.Habbeh.Entity
         public DateTime RegisterDate { get; set; }
         public int StatusId { get; set; }
         public string Password { get; set; }
+
+        public static TbUser ToEntity(System.Data.IDataReader reader)
+        {
+            TbUser user = null;
+            user = new TbUser();
+            user.Id = Convert.ToInt32(reader["Id"]);
+            user.UserName = reader["UserName"].ToString();
+            if (reader["FirstName"] != DBNull.Value)
+                user.FirstName = reader["FirstName"].ToString();
+            if (reader["LastName"] != DBNull.Value)
+                user.LastName = reader["LastName"].ToString();
+            user.Email = reader["Email"].ToString();
+            if (reader["PhoneNo"] != DBNull.Value)
+                user.PhoneNo = reader["PhoneNo"].ToString();
+            if (reader["Location"] != DBNull.Value)
+                user.Location = reader["Location"].ToString();
+            if (reader["Picture"] != DBNull.Value)
+                user.Picture = reader["Picture"].ToString();
+            user.RegisterDate = Convert.ToDateTime(reader["RegisterDate"]);
+            user.StatusId = Convert.ToInt32(reader["StatusId"]);
+            user.Password = reader["Password"].ToString();
+            return user;
+        }
     }
 }
