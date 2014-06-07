@@ -24,9 +24,9 @@ namespace Home.Habbeh.Presentation
         }
 
         [WebMethod]        
-        public void Register(string username, string email, string password)
+        public void Register(string userName, string email, string password)
         {
-            TbUser user = new TbUser() { UserName = username, Email = email, Password = password };
+            TbUser user = new TbUser() { UserName = userName, Email = email, Password = password };
             Business.User.Register(user);
         }
 
