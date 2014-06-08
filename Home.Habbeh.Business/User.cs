@@ -73,6 +73,14 @@ namespace Home.Habbeh.Business
             }
         }
 
+        public static void SaveProfile(TbUser user)
+        {
+            using (DataAccess.User db = new DataAccess.User())
+            {
+                db.Update(user);
+            }
+        }
+
         public static List<TbUser> Search(string searchText)
         {
             using (DataAccess.User db = new DataAccess.User())
@@ -112,7 +120,7 @@ namespace Home.Habbeh.Business
         {
             using (MailMessage mm = new MailMessage())
             {
-                MailAddress fromAddress = new MailAddress("habbeh.info@gmail.com"); 
+                MailAddress fromAddress = new MailAddress("habbeh.info@gmail.com");
                 mm.From = fromAddress;
                 mm.To.Add(email);
                 mm.Subject = subject;
@@ -121,13 +129,13 @@ namespace Home.Habbeh.Business
 
                 SmtpClient smtp = new SmtpClient();
                 smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-                smtp.Host = "smtp.gmail.com"; 
+                smtp.Host = "smtp.gmail.com";
                 smtp.EnableSsl = false;
                 NetworkCredential NetworkCred = new NetworkCredential("habbeh.info@gmail.com", "habbeh_android");
                 smtp.Credentials = NetworkCred;
                 smtp.Port = 587; //465
-                smtp.SendCompleted += new SendCompletedEventHandler(smtp_SendCompleted);                
-                smtp.SendAsync(mm, "token");                                
+                smtp.SendCompleted += new SendCompletedEventHandler(smtp_SendCompleted);
+                smtp.SendAsync(mm, "token");
             }
         }
 

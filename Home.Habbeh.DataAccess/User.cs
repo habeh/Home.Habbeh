@@ -88,6 +88,21 @@ namespace Home.Habbeh.DataAccess
             cmd.ExecuteNonQuery();
         }
 
+        public void Update(TbUser user)
+        {
+            SqlCommand cmd = con.CreateCommand();
+            cmd.CommandText = "Update TbUser set FirstName=@FirstName , LastName=@LastName,Location=@Location,Password=@Password,PhoneNo=@PhoneNo,Picture=@Picture where UserName=@UserName";
+            cmd.Parameters.AddWithValue("@UserName", user.UserName);
+            cmd.Parameters.AddWithValue("@FirstName", user.FirstName);
+            cmd.Parameters.AddWithValue("@LastName", user.LastName);
+            cmd.Parameters.AddWithValue("@Location", user.Location);
+            cmd.Parameters.AddWithValue("@Password", user.Password);
+            cmd.Parameters.AddWithValue("@PhoneNo", user.PhoneNo);
+            cmd.Parameters.AddWithValue("@Picture", user.Picture);
+
+            cmd.ExecuteNonQuery();
+        }
+
         public void Dispose()
         {
             if (con != null)
