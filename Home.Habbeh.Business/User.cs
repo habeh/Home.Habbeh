@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Home.Habbeh.Entity;
+using Home.Habbeh.Entity.Common;
+using System.Net.Mail;
+using System.Net;
 
 namespace Home.Habbeh.Business
 {
@@ -18,19 +21,35 @@ namespace Home.Habbeh.Business
                 newUser.Password = user.Password;
                 newUser.StatusId = 1;
                 newUser.RegisterDate = DateTime.Now;
-                /*TODO : Check Duplicate Email and UserName*/
+
+                /*Check Required Fields UserName,Email,Password*/
+                if (string.IsNullOrEmpty(user.UserName)) { throw new HabbeException("نام کاربری اجباری است"); }
+                if (string.IsNullOrEmpty(user.Email)) { throw new HabbeException("ایمیل اجباری است"); }
+                if (string.IsNullOrEmpty(user.Password)) { throw new HabbeException("رمز عبور اجباری است"); }
+
+                /*Check Duplicate UserName*/
+                if (userData.Retrieve(user.UserName) != null)
+                {
+                    throw new HabbeException("نام کاربری تکراری است");
+                }
+
+                /*Check Duplicate Email */
+                if (userData.RetrieveByEmail(user.Email) != null)
+                {
+                    throw new HabbeException("ایمیل تکراری است");
+                }
 
                 /*Create User*/
                 userData.Create(newUser);
             }
 
             /*Send Verification Email*/
-            SendEmail(user.Email, "Verification");
+            SendEmail(user.Email, EmailType.Verification);
         }
 
         public static void SendForgiveInformation(string email)
         {
-            SendEmail(email, "Forgive");
+            SendEmail(email, EmailType.Forgive);
         }
 
         public static TbUser Login(string userName, string password)
@@ -38,7 +57,7 @@ namespace Home.Habbeh.Business
             using (DataAccess.User userData = new DataAccess.User())
             {
                 TbUser user = userData.Retrieve(userName, password);
-                
+
                 /*clear password before send to client*/
                 user.Password = null;
 
@@ -72,9 +91,50 @@ namespace Home.Habbeh.Business
             throw new NotImplementedException();
         }
 
-        private static void SendEmail(string email, string data)
+        private static void SendEmail(string email, EmailType emailType)
         {
-            //TODO: Email Service
+            //TODO: Email Service, background Thread for send email 
+
+            /*TODO : Create some recored in database*/
+
+            switch (emailType)
+            {
+                case EmailType.Forgive:
+                    SendEmail("ارسال ایمیل یاداوری", email, "ایمیل یاداوری");
+                    break;
+                case EmailType.Verification:
+                    SendEmail("ارسال ایمیل تایید ثبت نام", email, "ایمیل تایید ثبت نام");
+                    break;
+            }
+        }
+
+        private static void SendEmail(string body, string email, string subject)
+        {
+            using (MailMessage mm = new MailMessage())
+            {
+                MailAddress fromAddress = new MailAddress("habbeh.info@gmail.com"); 
+                mm.From = fromAddress;
+                mm.To.Add(email);
+                mm.Subject = subject;
+                mm.Body = body;
+                mm.IsBodyHtml = false;
+
+                SmtpClient smtp = new SmtpClient();
+                smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+                smtp.Host = "smtp.gmail.com"; 
+                smtp.EnableSsl = false;
+                NetworkCredential NetworkCred = new NetworkCredential("habbeh.info@gmail.com", "habbeh_android");
+                smtp.Credentials = NetworkCred;
+                smtp.Port = 587; //465
+                smtp.SendCompleted += new SendCompletedEventHandler(smtp_SendCompleted);                
+                smtp.SendAsync(mm, "token");                                
+            }
+        }
+
+        static void smtp_SendCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
+        {
+            //TODO : delete some records from Database
+
         }
 
     }

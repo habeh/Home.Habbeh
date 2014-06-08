@@ -52,6 +52,19 @@ namespace Home.Habbeh.DataAccess
             return null;
         }
 
+        public TbUser RetrieveByEmail(string email)
+        {
+            SqlCommand cmd = con.CreateCommand();
+            cmd.CommandText = "Select * from TbUser where Email= @Email";
+            cmd.Parameters.AddWithValue("@Email", email);
+            using (IDataReader reader = cmd.ExecuteReader())
+            {
+                if (reader.Read())
+                    return TbUser.ToEntity(reader);
+            }
+            return null;
+        }
+
         public List<TbUser> RetrieveList(string searchText)
         {
             List<TbUser> result = new List<TbUser>();

@@ -71,6 +71,9 @@ namespace Home.Habbeh.Business.Test
         {
             try
             {
+                expected.Email = "karim.medusa@gmail.com";
+                expected.UserName = "medusa";
+                expected.Password = "123";
                 User.Register(expected);
             }
             catch (Exception e)
