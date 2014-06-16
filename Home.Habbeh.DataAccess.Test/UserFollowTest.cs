@@ -4,8 +4,8 @@ using System;
 
 namespace Home.Habbeh.DataAccess.Test
 {
-    
-    
+
+
     /// <summary>
     ///This is a test class for UserFollowTest and is intended
     ///to contain all UserFollowTest Unit Tests
@@ -70,11 +70,17 @@ namespace Home.Habbeh.DataAccess.Test
         [TestMethod()]
         public void CreateTest()
         {
-            UserFollow target = new UserFollow(); // TODO: Initialize to an appropriate value
-            int userId = 0; // TODO: Initialize to an appropriate value
-            int followerId = 0; // TODO: Initialize to an appropriate value
-            target.Create(userId, followerId);
-            Assert.Inconclusive("A method that does not return a value cannot be verified.");
+            UserFollow target = new UserFollow();
+            int userId = 27;
+            int followerId = 28;
+            try
+            {
+                target.Create(userId, followerId);
+            }
+            catch (Exception e)
+            {
+                Assert.Fail(e.Message);
+            }
         }
     }
 }

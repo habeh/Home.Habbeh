@@ -91,12 +91,18 @@ namespace Home.Habbeh.DataAccess.Test
         public void RetrieveListTest()
         {
             Message target = new Message(); // TODO: Initialize to an appropriate value
-            DateTime lastReadMessage = new DateTime(); // TODO: Initialize to an appropriate value
-            List<TbMessage> expected = null; // TODO: Initialize to an appropriate value
+            DateTime lastReadMessage = DateTime.Now;
+
             List<TbMessage> actual;
-            actual = target.RetrieveList(lastReadMessage);
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            try
+            {
+                actual = target.RetrieveList(lastReadMessage);
+                Assert.IsTrue(actual.Count > 0);
+            }
+            catch (Exception e)
+            {
+                Assert.Fail(e.Message);
+            }
         }
     }
 }
