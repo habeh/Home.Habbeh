@@ -12,6 +12,7 @@ namespace Home.Habbeh.Business
         {
             using (DataAccess.Comment db = new DataAccess.Comment())
             {
+                comment.RegisterDate = DateTime.Now;
                 db.Create(comment);
             }
         }

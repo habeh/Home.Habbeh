@@ -48,6 +48,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CommentService.asmx" />
+    <Content Include="ContactService.asmx" />
     <Content Include="MessageService.asmx" />
     <Content Include="UserService.asmx" />
     <Content Include="Web.config" />
@@ -59,6 +61,14 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommentService.asmx.cs">
+      <DependentUpon>CommentService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ContactService.asmx.cs">
+      <DependentUpon>ContactService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="MessageService.asmx.cs">
       <DependentUpon>MessageService.asmx</DependentUpon>
       <SubType>Component</SubType>
