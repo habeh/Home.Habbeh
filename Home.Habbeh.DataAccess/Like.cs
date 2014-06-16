@@ -7,24 +7,23 @@ using Home.Habbeh.Entity;
 
 namespace Home.Habbeh.DataAccess
 {
-    public class Message : IDisposable
+    public class Like : IDisposable
     {
         private SqlConnection con;
 
-        public Message()
+        public Like()
         {
             con = new SqlConnection(Utility.ConnectionString);
             con.Open();
         }
 
-        public void Create(TbMessage msg)
+        public void Create(TbLike like)
         {
             SqlCommand cmd = con.CreateCommand();
-            cmd.CommandText = "Insert Into TbMessage (CategoryId,UserId,RegisterDate,Description) values (@CategoryId,@UserId,@RegisterDate,@Description)";
-            cmd.Parameters.AddWithValue("@CategoryId", msg.CategoryId);
-            cmd.Parameters.AddWithValue("@UserId", msg.UserId);
-            cmd.Parameters.AddWithValue("@RegisterDate", msg.RegisterDate);
-            cmd.Parameters.AddWithValue("@Description", msg.Description);            
+            cmd.CommandText = "Insert Into TbLike (UserId,MessageId,Rank) values (@UserId,@MessageId,@Rank)";
+            cmd.Parameters.AddWithValue("@MessageId", like.MessageId);
+            cmd.Parameters.AddWithValue("@UserId", like.UserId);
+            cmd.Parameters.AddWithValue("@Rank", like.Rank);  
             cmd.ExecuteNonQuery();
         }
 
