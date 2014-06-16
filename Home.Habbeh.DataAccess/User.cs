@@ -33,7 +33,7 @@ namespace Home.Habbeh.DataAccess
         public TbUser Retrieve(string userName, string password)
         {
             TbUser user = Retrieve(userName);
-            if (user.Password == password)
+            if (user!=null && user.Password == password)
                 return user;
 
             return null;

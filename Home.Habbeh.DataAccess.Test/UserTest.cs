@@ -15,8 +15,6 @@ namespace Home.Habbeh.DataAccess.Test
     [TestClass()]
     public class UserTest
     {
-
-
         private TestContext testContextInstance;
         private TbUser expected;
         private User target;
@@ -114,7 +112,7 @@ namespace Home.Habbeh.DataAccess.Test
         ///A test for Retrieve
         ///</summary>
         [TestMethod()]
-        public void RetrieveTest1()
+        public void RetrieveByUserNameTest()
         {
             try
             {
@@ -165,6 +163,33 @@ namespace Home.Habbeh.DataAccess.Test
             {
                 Assert.Fail(e.Message);
             }
+        }
+
+        /// <summary>
+        ///A test for Update
+        ///</summary>
+        [TestMethod()]
+        public void UpdateByTbUserTest()
+        {
+            User target = new User(); // TODO: Initialize to an appropriate value
+            TbUser user = null; // TODO: Initialize to an appropriate value
+            target.Update(user);
+            Assert.Inconclusive("A method that does not return a value cannot be verified.");
+        }
+
+        /// <summary>
+        ///A test for RetrieveByEmail
+        ///</summary>
+        [TestMethod()]
+        public void RetrieveByEmailTest()
+        {
+            User target = new User(); // TODO: Initialize to an appropriate value
+            string email = string.Empty; // TODO: Initialize to an appropriate value
+            TbUser expected = null; // TODO: Initialize to an appropriate value
+            TbUser actual;
+            actual = target.RetrieveByEmail(email);
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Verify the correctness of this test method.");
         }
     }
 }

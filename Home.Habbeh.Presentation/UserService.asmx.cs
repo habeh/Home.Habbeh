@@ -23,7 +23,7 @@ namespace Home.Habbeh.Presentation
             return "Hello User Service!";
         }
 
-        [WebMethod]        
+        [WebMethod]
         public void Register(string userName, string email, string password)
         {
             TbUser user = new TbUser() { UserName = userName, Email = email, Password = password };
@@ -49,21 +49,27 @@ namespace Home.Habbeh.Presentation
         }
 
         [WebMethod]
+        public void SaveProfile(TbUser user)
+        {
+            Business.User.SaveProfile(user);
+        }
+
+        [WebMethod]
         public List<TbUser> Search(string searchText)
         {
             return Business.User.Search(searchText);
         }
 
         [WebMethod]
-        public void ChangeStatus(int userId, int statusCode, int changerUserId)
+        public void ChangeStatus(string userName, int statusId)
         {
-            Business.User.ChangeStatus(userId, statusCode, changerUserId);
+            Business.User.ChangeStatus(userName, statusId);
         }
 
         [WebMethod]
-        public void Follow(int userId, int followerId)
+        public void Follow(string userName, string followerUserName)
         {
-
+            Business.User.Follow(userName, followerUserName);
         }
     }
 }

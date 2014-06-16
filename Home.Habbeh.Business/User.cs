@@ -59,7 +59,8 @@ namespace Home.Habbeh.Business
                 TbUser user = userData.Retrieve(userName, password);
 
                 /*clear password before send to client*/
-                user.Password = null;
+                if (user != null)
+                    user.Password = null;
 
                 return user;
             }
@@ -89,14 +90,30 @@ namespace Home.Habbeh.Business
             }
         }
 
-        public static void ChangeStatus(int userId, int statusCode, int changerUserId)
+        public static void ChangeStatus(string userName, int statusId)
         {
-            throw new NotImplementedException();
+            using (DataAccess.User db = new DataAccess.User())
+            {
+                db.Update(userName, statusId);
+            }
         }
 
-        public static void Follow(int userId, int followerId)
+        public static void Follow(string userName, string followerUserName)
         {
-            throw new NotImplementedException();
+            using (DataAccess.User db = new DataAccess.User())
+            {
+                TbUser user = db.Retrieve(userName);
+
+                TbUser follower = db.Retrieve(followerUserName);
+
+                if (user != null && follower != null)
+                {
+                    using (DataAccess.UserFollow ufDb = new DataAccess.UserFollow())
+                    {
+                        ufDb.Create(user.Id, follower.Id);
+                    }
+                }
+            }
         }
 
         private static void SendEmail(string email, EmailType emailType)
@@ -139,7 +156,7 @@ namespace Home.Habbeh.Business
             }
         }
 
-        static void smtp_SendCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
+        private static void smtp_SendCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
         {
             //TODO : delete some records from Database
 

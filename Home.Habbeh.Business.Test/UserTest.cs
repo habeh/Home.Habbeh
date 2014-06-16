@@ -116,8 +116,8 @@ namespace Home.Habbeh.Business.Test
         [TestMethod()]
         public void FollowTest()
         {
-            int userId = 0; // TODO: Initialize to an appropriate value
-            int followerId = 0; // TODO: Initialize to an appropriate value
+            string userId = ""; // TODO: Initialize to an appropriate value
+            string followerId = ""; // TODO: Initialize to an appropriate value
             User.Follow(userId, followerId);
             Assert.Inconclusive("A method that does not return a value cannot be verified.");
         }
@@ -128,10 +128,9 @@ namespace Home.Habbeh.Business.Test
         [TestMethod()]
         public void ChangeStatusTest()
         {
-            int userId = 0; // TODO: Initialize to an appropriate value
-            int statusCode = 0; // TODO: Initialize to an appropriate value
-            int changerUserId = 0; // TODO: Initialize to an appropriate value
-            User.ChangeStatus(userId, statusCode, changerUserId);
+            string userId = ""; // TODO: Initialize to an appropriate value
+            int statusCode = 0; // TODO: Initialize to an appropriate value            
+            User.ChangeStatus(userId, statusCode);
             Assert.Inconclusive("A method that does not return a value cannot be verified.");
         }
 
