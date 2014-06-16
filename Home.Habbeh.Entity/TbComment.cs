@@ -14,5 +14,19 @@ namespace Home.Habbeh.Entity
         public DateTime RegisterDate { get; set; }
         public int CommentTypeId { get; set; }
         public string Description { get; set; }
+
+        public static TbComment ToEntity(System.Data.IDataReader reader)
+        {
+            TbComment comment = null;
+            comment = new TbComment();
+            comment.Id = Convert.ToInt32(reader["Id"]);
+            comment.MessageId = Convert.ToInt32(reader["MessageId"]);
+            comment.CommentTypeId = Convert.ToInt32(reader["CommentTypeId"]);
+            comment.UserId = Convert.ToInt32(reader["UserId"]);
+            comment.Description = Convert.ToString(reader["Description"]);
+            comment.RegisterDate = Convert.ToDateTime(reader["RegisterDate"]);
+
+            return comment;
+        }
     }
 }
