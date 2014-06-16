@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
+using Home.Habbeh.Entity;
 
 namespace Home.Habbeh.Presentation
 {
@@ -18,9 +19,20 @@ namespace Home.Habbeh.Presentation
     {
 
         [WebMethod]
-        public string HelloWorld()
+        public string Ping()
         {
-            return "Hello World";
+            return "Hello Message Service!";
+        }
+
+        [WebMethod]
+        public void InsertMessage(int categoryId,int userId,string description)
+        {
+            TbMessage msg = new TbMessage();
+            msg.CategoryId = categoryId;
+            msg.UserId = userId;
+            msg.Description = description;
+
+            Business.Message.Create(msg);
         }
     }
 }
