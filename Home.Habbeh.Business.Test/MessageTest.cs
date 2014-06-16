@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using Home.Habbeh.Entity;
+using System.Collections.Generic;
 
 namespace Home.Habbeh.Business.Test
 {
@@ -80,6 +81,20 @@ namespace Home.Habbeh.Business.Test
             {
                 Assert.Fail(e.Message);
             }
+        }
+
+        /// <summary>
+        ///A test for ReadMessage
+        ///</summary>
+        [TestMethod()]
+        public void ReadMessageTest()
+        {
+            DateTime lastReadMessage = new DateTime(); // TODO: Initialize to an appropriate value
+            List<TbMessage> expected = null; // TODO: Initialize to an appropriate value
+            List<TbMessage> actual;
+            actual = Message.ReadMessage(lastReadMessage);
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Verify the correctness of this test method.");
         }
     }
 }

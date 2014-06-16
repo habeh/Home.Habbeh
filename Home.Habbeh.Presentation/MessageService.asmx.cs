@@ -45,5 +45,11 @@ namespace Home.Habbeh.Presentation
 
             Business.Like.Create(like);
         }
+
+        [WebMethod]
+        public List<TbMessage> ReadMessage(DateTime lastUpdateMessage)
+        {
+            return Business.Message.ReadMessage(lastUpdateMessage);
+        }
     }
 }
