@@ -24,45 +24,52 @@ namespace Home.Habbeh.Presentation
         }
 
         [WebMethod]
-        public void Register(string username, string email, string password)
+        public void Register(string userName, string email, string password)
         {
-            new Business.User().Register(username, email, password);
+            TbUser user = new TbUser() { UserName = userName, Email = email, Password = password };
+            Business.User.Register(user);
         }
 
         [WebMethod]
         public void SendForgiveInformation(string email)
         {
-            new Business.User().SendForgiveInformation(email);
+            Business.User.SendForgiveInformation(email);
         }
 
         [WebMethod]
-        public TbUser Login(string username, string password)
+        public TbUser Login(string userName, string password)
         {
-            return new Business.User().Login(username, password);
+            return Business.User.Login(userName, password);
         }
 
         [WebMethod]
-        public TbUser GetProfile(int userId)
+        public TbUser GetProfile(string userName)
         {
-            return new Business.User().GetProfile(userId);
+            return Business.User.GetProfile(userName);
+        }
+
+        [WebMethod]
+        public void SaveProfile(TbUser user)
+        {
+            Business.User.SaveProfile(user);
         }
 
         [WebMethod]
         public List<TbUser> Search(string searchText)
         {
-            return new Business.User().Search(searchText);
+            return Business.User.Search(searchText);
         }
 
         [WebMethod]
-        public void ChangeStatus(int userId, int statusCode, int changerUserId)
+        public void ChangeStatus(string userName, int statusId)
         {
-            new Business.User().ChangeStatus(userId, statusCode, changerUserId);
+            Business.User.ChangeStatus(userName, statusId);
         }
 
         [WebMethod]
-        public void Follow(int userId, int followerId)
+        public void Follow(string userName, string followerUserName)
         {
-
+            Business.User.Follow(userName, followerUserName);
         }
     }
 }

@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -39,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\BException.cs" />
+    <Compile Include="Common\Enum.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TbAppInfo.cs" />
     <Compile Include="TbCategory.cs" />
@@ -52,6 +55,7 @@
     <Compile Include="TbUser.cs" />
     <Compile Include="TbUserFollow.cs" />
     <Compile Include="TbUserRole.cs" />
+    <Compile Include="Utility.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
