@@ -16,7 +16,7 @@ namespace Home.Habbeh.Entity
         public string Location { get; set; }
         public string Picture { get; set; }
         public DateTime RegisterDate { get; set; }
-        public int StatusId { get; set; }
+        public string Status { get; set; }
         public string Password { get; set; }
 
         public static TbUser ToEntity(System.Data.IDataReader reader)
@@ -36,8 +36,11 @@ namespace Home.Habbeh.Entity
                 user.Location = reader["Location"].ToString();
             if (reader["Picture"] != DBNull.Value)
                 user.Picture = reader["Picture"].ToString();
+
+            if (reader["Status"] != DBNull.Value)
+                user.Status = reader["Status"].ToString();
             user.RegisterDate = Convert.ToDateTime(reader["RegisterDate"]);
-            user.StatusId = Convert.ToInt32(reader["StatusId"]);
+            
             user.Password = reader["Password"].ToString();
             return user;
         }

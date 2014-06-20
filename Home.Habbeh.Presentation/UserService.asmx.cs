@@ -49,8 +49,10 @@ namespace Home.Habbeh.Presentation
         }
 
         [WebMethod]
-        public void SaveProfile(TbUser user)
+        public void SaveProfile(string username,string firstname, string lastname,string email,string status,string password)
         {
+            TbUser user = new TbUser() 
+            {UserName=username ,FirstName=firstname ,LastName=lastname ,Email=email ,Status=status ,Password=password  };
             Business.User.SaveProfile(user);
         }
 

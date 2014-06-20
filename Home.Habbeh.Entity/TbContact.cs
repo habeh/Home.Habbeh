@@ -11,6 +11,6 @@ namespace Home.Habbeh.Entity
         public int UserId { get; set; }
         public string Description { get; set; }
         public DateTime RegisterDate { get; set; }
-        public int Status { get; set; }
+        public string Status { get; set; }
     }
 }

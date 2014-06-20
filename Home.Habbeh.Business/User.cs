@@ -19,7 +19,7 @@ namespace Home.Habbeh.Business
                 newUser.UserName = user.UserName;
                 newUser.Email = user.Email;
                 newUser.Password = user.Password;
-                newUser.StatusId = 1;
+                newUser.Status = "I am Online In Habbeh";
                 newUser.RegisterDate = DateTime.Now;
 
                 /*Check Required Fields UserName,Email,Password*/
