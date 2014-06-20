@@ -49,7 +49,11 @@ namespace Home.Habbeh.Business
 
         public static void SendForgiveInformation(string email)
         {
+
+
             SendEmail(email, EmailType.Forgive);
+
+            
         }
 
         public static TbUser Login(string userName, string password)
@@ -125,7 +129,13 @@ namespace Home.Habbeh.Business
             switch (emailType)
             {
                 case EmailType.Forgive:
-                    SendEmail("ارسال ایمیل یاداوری", email, "ایمیل یاداوری");
+                    using (DataAccess.User userData = new DataAccess.User())
+                    {
+                        TbUser user = userData.RetrieveByEmail(email);
+
+
+                        SendEmail("<html><body><b>UserName :   <font color=red>" + user.UserName + "</font> <br> <font color=black> Password :</font> <font color=red>" + user.Password + "</font><br><font color=blue> Habbeh Android Application</font></body></html> ", email, "ایمیل یاداوری");
+                    }
                     break;
                 case EmailType.Verification:
                     SendEmail("ارسال ایمیل تایید ثبت نام", email, "ایمیل تایید ثبت نام");
@@ -135,25 +145,29 @@ namespace Home.Habbeh.Business
 
         private static void SendEmail(string body, string email, string subject)
         {
-            using (MailMessage mm = new MailMessage())
-            {
-                MailAddress fromAddress = new MailAddress("habbeh.info@gmail.com");
-                mm.From = fromAddress;
-                mm.To.Add(email);
-                mm.Subject = subject;
-                mm.Body = body;
-                mm.IsBodyHtml = false;
+          
+            MailMessage msg = new MailMessage();
+            msg.From = new MailAddress("habbeh.info@gmail.com");
+            msg.To.Add(email);
 
-                SmtpClient smtp = new SmtpClient();
-                smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-                smtp.Host = "smtp.gmail.com";
-                smtp.EnableSsl = false;
-                NetworkCredential NetworkCred = new NetworkCredential("habbeh.info@gmail.com", "habbeh_android");
-                smtp.Credentials = NetworkCred;
-                smtp.Port = 587; //465
-                smtp.SendCompleted += new SendCompletedEventHandler(smtp_SendCompleted);
-                smtp.SendAsync(mm, "token");
-            }
+            msg.Subject = subject;
+            msg.IsBodyHtml = true;
+            msg.Body = body;
+            //msg.Priority = MailPriority.High;
+
+
+            SmtpClient client = new SmtpClient();
+            client.EnableSsl = true;
+            client.UseDefaultCredentials = false;
+            client.Credentials = new NetworkCredential("habbeh.info@gmail.com", "habbeh_android");
+            client.Host = "smtp.gmail.com";
+            client.Port = 587;
+            client.DeliveryMethod = SmtpDeliveryMethod.Network;
+
+            client.Send(msg);
+
+
+
         }
 
         private static void smtp_SendCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
