@@ -52,6 +52,20 @@ namespace Home.Habbeh.DataAccess
             return null;
         }
 
+
+        public TbUser Retrieveuserid(int userid)
+        {
+            SqlCommand cmd = con.CreateCommand();
+            cmd.CommandText = "Select * from TbUser where Id = @Id";
+            cmd.Parameters.AddWithValue("@Id", userid);
+            using (IDataReader reader = cmd.ExecuteReader())
+            {
+                if (reader.Read())
+                    return TbUser.ToEntity(reader);
+            }
+            return null;
+        }
+
         public TbUser RetrieveByEmail(string email)
         {
             SqlCommand cmd = con.CreateCommand();

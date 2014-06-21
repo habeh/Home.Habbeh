@@ -47,7 +47,7 @@ namespace Home.Habbeh.Presentation
         }
 
         [WebMethod]
-        public List<TbMessage> ReadMessage(DateTime lastUpdateMessage)
+        public List<TbMessage> ReadMessage(String lastUpdateMessage)
         {
             return Business.Message.ReadMessage(lastUpdateMessage);
         }
@@ -56,6 +56,12 @@ namespace Home.Habbeh.Presentation
         public TbMessage CountNewMessage(String LastReadMessage)
         {
             return Business.Message.newMessageCount(LastReadMessage);
+        }
+
+        [WebMethod]
+        public TbMessage CountLike(int messageid)
+        {
+            return Business.Message.LikeC(messageid);
         }
     }
 }

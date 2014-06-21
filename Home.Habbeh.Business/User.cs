@@ -70,11 +70,11 @@ namespace Home.Habbeh.Business
             }
         }
 
-        public static TbUser GetProfile(string username)
+        public static TbUser GetProfile(int userid)
         {
             using (DataAccess.User db = new DataAccess.User())
             {
-                return db.Retrieve(username);
+                return db.Retrieveuserid(userid);
             }
         }
 

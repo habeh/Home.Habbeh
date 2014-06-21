@@ -43,9 +43,9 @@ namespace Home.Habbeh.Presentation
         }
 
         [WebMethod]
-        public TbUser GetProfile(string userName)
+        public TbUser GetProfile(int userid)
         {
-            return Business.User.GetProfile(userName);
+            return Business.User.GetProfile(userid);
         }
 
         [WebMethod]

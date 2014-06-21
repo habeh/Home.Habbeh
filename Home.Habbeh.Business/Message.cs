@@ -17,7 +17,7 @@ namespace Home.Habbeh.Business
             }
         }
 
-        public static List<TbMessage> ReadMessage(DateTime lastUpdateMessage)
+        public static List<TbMessage> ReadMessage(String lastUpdateMessage)
         {
             using (DataAccess.Message db = new DataAccess.Message())
             {
@@ -32,6 +32,15 @@ namespace Home.Habbeh.Business
             {
                 return db.RetrieveListcount(lastReadMessage);
             }  
+        }
+
+
+        public static TbMessage LikeC(int messageid)
+        {
+            using (DataAccess.Message db = new DataAccess.Message())
+            {
+                return db.RetrieveLikeCount(messageid);
+            }
         }
     }
 }
