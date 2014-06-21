@@ -17,12 +17,21 @@ namespace Home.Habbeh.Business
             }
         }
 
-        public static List<TbMessage> ReadMessage(DateTime lastReadMessage)
+        public static List<TbMessage> ReadMessage(DateTime lastUpdateMessage)
         {
             using (DataAccess.Message db = new DataAccess.Message())
             {
-                return db.RetrieveList(lastReadMessage);
+                return db.RetrieveList(lastUpdateMessage);
             }
+        }
+
+
+        public static TbMessage newMessageCount(String lastReadMessage)
+        {
+            using (DataAccess.Message db = new DataAccess.Message())
+            {
+                return db.RetrieveListcount(lastReadMessage);
+            }  
         }
     }
 }

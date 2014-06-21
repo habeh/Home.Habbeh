@@ -36,11 +36,9 @@ namespace Home.Habbeh.Entity
                 user.Location = reader["Location"].ToString();
             if (reader["Picture"] != DBNull.Value)
                 user.Picture = reader["Picture"].ToString();
-
             if (reader["Status"] != DBNull.Value)
                 user.Status = reader["Status"].ToString();
             user.RegisterDate = Convert.ToDateTime(reader["RegisterDate"]);
-            
             user.Password = reader["Password"].ToString();
             return user;
         }

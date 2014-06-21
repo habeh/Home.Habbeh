@@ -38,18 +38,36 @@ namespace Home.Habbeh.DataAccess
             }
         }
 
-        public List<TbMessage> RetrieveList(DateTime lastReadMessage)
+        public List<TbMessage> RetrieveList(DateTime lastUpdateMessage)
         {
             List<TbMessage> result = new List<TbMessage>();
             SqlCommand cmd = con.CreateCommand();
             cmd.CommandText = "select * from TbMessage where SendDate > @SendDate";
-            cmd.Parameters.AddWithValue("@SendDate", lastReadMessage);
+            cmd.Parameters.AddWithValue("@SendDate", lastUpdateMessage);
             using (IDataReader reader = cmd.ExecuteReader())
             {
                 while (reader.Read())
                     result.Add(TbMessage.ToEntity(reader));
             }
             return result;
+        }
+
+        public TbMessage RetrieveListcount(String lastReadMessage)
+        {
+            TbMessage MessageCount = new TbMessage();
+            SqlCommand cmd = con.CreateCommand();
+            cmd.CommandText = "SELECT COUNT(Id) AS Count FROM  TbMessage where SendDate >= @SendDate";
+            cmd.Parameters.AddWithValue("@SendDate", lastReadMessage);
+            using (SqlDataReader reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    TbMessage Num = new TbMessage();
+                    Num.Count = Convert.ToInt32(reader["Count"]);
+                    return Num;
+                }
+            }
+            return null;
         }
     }
 }

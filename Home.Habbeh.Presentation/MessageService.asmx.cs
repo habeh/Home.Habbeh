@@ -51,5 +51,11 @@ namespace Home.Habbeh.Presentation
         {
             return Business.Message.ReadMessage(lastUpdateMessage);
         }
+
+        [WebMethod]
+        public TbMessage CountNewMessage(String LastReadMessage)
+        {
+            return Business.Message.newMessageCount(LastReadMessage);
+        }
     }
 }

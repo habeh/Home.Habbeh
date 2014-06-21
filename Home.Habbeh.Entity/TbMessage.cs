@@ -13,6 +13,9 @@ namespace Home.Habbeh.Entity
         public DateTime RegisterDate { get; set; }
         public DateTime SendDate { get; set; }
         public string Description { get; set; }
+        public int Count { get; set; }
+
+       
 
         public static TbMessage ToEntity(System.Data.IDataReader reader)
         {
@@ -22,10 +25,9 @@ namespace Home.Habbeh.Entity
             msg.UserId = Convert.ToInt32(reader["UserId"]);
             msg.Description = Convert.ToString(reader["Description"]);
             msg.RegisterDate = Convert.ToDateTime(reader["RegisterDate"]);
-
             if (reader["SendDate"] != DBNull.Value)
-                msg.SendDate = Convert.ToDateTime(reader["SendDate"]);
-
+            msg.SendDate = Convert.ToDateTime(reader["SendDate"]);
+            
             return msg;
         }
     }
