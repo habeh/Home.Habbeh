@@ -43,7 +43,7 @@ namespace Home.Habbeh.DataAccess
             SqlCommand cmd = con.CreateCommand();
 
             cmd.CommandText = @"SELECT  TbMessage.UserId, TbMessage.Id, TbMessage.SendDate, TbMessage.CategoryId, TbMessage.Description, TbMessage.RegisterDate, 
-            TbMessage.SendDate, TbCategory.Title FROM  TbCategory 
+            TbMessage.SendDate, TbCategory.Title as CategoryTitle FROM  TbCategory 
                 INNER JOIN TbMessage ON TbCategory.Id = TbMessage.CategoryId
                     WHERE (TbMessage.SendDate > @SendDate)";
 
