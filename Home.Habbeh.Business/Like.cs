@@ -12,8 +12,20 @@ namespace Home.Habbeh.Business
         {
             using (DataAccess.Like db = new DataAccess.Like())
             {
-                db.Create(like);
+                TbLike duplike = db.Retrieve(like.MessageId, like.UserId);
+                if (duplike == null)
+                    db.Create(like);
+                /* else Remove like */
             }
         }
+
+        public static int CountLike(int messageId)
+        {
+            using (DataAccess.Like db = new DataAccess.Like())
+            {
+                return db.RetrieveCount(messageId);
+            }
+        }
+
     }
 }

@@ -2,18 +2,18 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using Home.Habbeh.Entity;
-using System.Collections.Generic;
+using Home.Habbeh.Business;
 
-namespace Home.Habbeh.DataAccess.Test
+namespace Home.Habbeh.Business.Test
 {
 
 
     /// <summary>
-    ///This is a test class for MessageTest and is intended
-    ///to contain all MessageTest Unit Tests
+    ///This is a test class for LikeTest and is intended
+    ///to contain all LikeTest Unit Tests
     ///</summary>
     [TestClass()]
-    public class MessageTest
+    public class LikeTest
     {
 
 
@@ -65,18 +65,18 @@ namespace Home.Habbeh.DataAccess.Test
         //
         #endregion
 
-
         /// <summary>
         ///A test for Create
         ///</summary>
         [TestMethod()]
         public void CreateTest()
         {
-            Message target = new Message(); // TODO: Initialize to an appropriate value
-            TbMessage msg = new TbMessage() { CategoryId = 1, Description = "تست", RegisterDate = DateTime.Now, UserId = 27 };
+            TbLike like = new TbLike();
+            like.MessageId = 1;
+            like.UserId = 27;
             try
             {
-                target.Create(msg);
+                Like.Create(like);
             }
             catch (Exception e)
             {
@@ -85,39 +85,15 @@ namespace Home.Habbeh.DataAccess.Test
         }
 
         /// <summary>
-        ///A test for RetrieveList
+        ///A test for CountLike
         ///</summary>
         [TestMethod()]
-        public void RetrieveListTest()
+        public void CountLikeTest()
         {
-            Message target = new Message(); // TODO: Initialize to an appropriate value
-            string lastReadMessage = "2014-01-01";
-
-            List<TbMessage> actual;
-            try
-            {
-                actual = target.RetrieveList(lastReadMessage);
-                Assert.IsTrue(actual.Count > 0);
-            }
-            catch (Exception e)
-            {
-                Assert.Fail(e.Message);
-            }
-        }
-
-        /// <summary>
-        ///A test for CountNewMessage
-        ///</summary>
-        [TestMethod()]
-        public void CountNewMessageTest()
-        {
-            Message target = new Message();
-            string LastReadMessage = "2014-01-01";
-
+            int messageId = 1;
             int actual;
-            actual = target.CountNewMessage(LastReadMessage);
+            actual = Like.CountLike(messageId);
             Assert.IsTrue(actual > 0);
-
         }
     }
 }

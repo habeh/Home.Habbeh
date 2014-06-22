@@ -52,7 +52,6 @@ namespace Home.Habbeh.DataAccess
             return null;
         }
 
-
         public TbUser Retrieveuserid(int userid)
         {
             SqlCommand cmd = con.CreateCommand();

@@ -29,7 +29,6 @@ namespace Home.Habbeh.DataAccess
             cmd.ExecuteNonQuery();
         }
 
-
         public void Dispose()
         {
             if (con != null)
@@ -57,41 +56,19 @@ namespace Home.Habbeh.DataAccess
             return result;
         }
 
-        public TbMessage RetrieveListcount(String lastReadMessage)
+        public int CountNewMessage(string LastReadMessage)
         {
-            TbMessage MessageCount = new TbMessage();
             SqlCommand cmd = con.CreateCommand();
-            cmd.CommandText = "SELECT COUNT(Id) AS Count FROM  TbMessage where SendDate >= @SendDate";
-            cmd.Parameters.AddWithValue("@SendDate", lastReadMessage);
-            using (SqlDataReader reader = cmd.ExecuteReader())
-            {
-                while (reader.Read())
-                {
-                    TbMessage Num = new TbMessage();
-                    Num.Count = Convert.ToInt32(reader["Count"]);
-                    return Num;
-                }
-            }
-            return null;
-        }
 
+            cmd.CommandText = @"SELECT  count(*) as count FROM  TbMessage WHERE SendDate > @SendDate";
 
-        public TbMessage RetrieveLikeCount(int messageid)
-        {
-            
-            SqlCommand cmd = con.CreateCommand();
-            cmd.CommandText = "SELECT COUNT(Id) AS CountLike FROM  TbLike where MessageId = @MessageId";
-            cmd.Parameters.AddWithValue("@MessageId", messageid);
-            using (SqlDataReader reader = cmd.ExecuteReader())
+            cmd.Parameters.AddWithValue("@SendDate", LastReadMessage);
+            using (IDataReader reader = cmd.ExecuteReader())
             {
-                while (reader.Read())
-                {
-                    TbMessage NumLike = new TbMessage();
-                    NumLike.CountLike = Convert.ToInt32(reader["CountLike"]);
-                    return NumLike;
-                }
+                if (reader.Read())
+                    return Convert.ToInt32(reader["count"]);
             }
-            return null;
+            return 0;
         }
     }
 }

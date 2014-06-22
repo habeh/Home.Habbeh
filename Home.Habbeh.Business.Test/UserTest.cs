@@ -103,11 +103,11 @@ namespace Home.Habbeh.Business.Test
         [TestMethod()]
         public void GetProfileTest()
         {
-            string username = "test";
+            int userId= 27;
             TbUser actual;
-            actual = User.GetProfile(username);
+            actual = User.GetProfile(userId);
             Assert.IsNotNull(actual);
-            Assert.AreEqual(username, actual.UserName);
+            Assert.AreEqual(userId, actual.Id);
         }
 
         /// <summary>

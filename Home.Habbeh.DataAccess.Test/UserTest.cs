@@ -98,7 +98,7 @@ namespace Home.Habbeh.DataAccess.Test
         {
             try
             {
-                expected.StatusId = 1;
+                expected.Status = "1";
                 expected.RegisterDate = DateTime.Now;
                 target.Create(expected);
             }
@@ -157,7 +157,7 @@ namespace Home.Habbeh.DataAccess.Test
                 target.Update(expected.UserName, statusId);
                 TbUser actual = target.Retrieve(expected.UserName);
                 Assert.IsNotNull(actual);
-                Assert.AreEqual(statusId, actual.StatusId);
+                Assert.AreEqual(statusId, actual.Status);
             }
             catch (Exception e)
             {

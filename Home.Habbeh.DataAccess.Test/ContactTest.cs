@@ -72,7 +72,7 @@ namespace Home.Habbeh.DataAccess.Test
         public void CreateTest()
         {
             Contact target = new Contact();
-            TbContact contact = new TbContact() { Description = "TEST", UserId = 27, RegisterDate = DateTime.Now, Status = 1 };
+            TbContact contact = new TbContact() { Description = "TEST", UserId = 27, RegisterDate = DateTime.Now, Status = "1" };
             try
             {
                 target.Create(contact);

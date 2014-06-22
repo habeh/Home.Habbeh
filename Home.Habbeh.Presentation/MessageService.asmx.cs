@@ -25,7 +25,7 @@ namespace Home.Habbeh.Presentation
         }
 
         [WebMethod]
-        public void InsertMessage(int categoryId,int userId,string description)
+        public void InsertMessage(int categoryId, int userId, string description)
         {
             TbMessage msg = new TbMessage();
             msg.CategoryId = categoryId;
@@ -38,10 +38,10 @@ namespace Home.Habbeh.Presentation
         [WebMethod]
         public void LikeMessage(int userId, int messageId)
         {
-            TbLike like= new TbLike();
+            TbLike like = new TbLike();
             like.UserId = userId;
-            like.MessageId =messageId;
-            like.Rank =1;
+            like.MessageId = messageId;
+            like.Rank = 1;
 
             Business.Like.Create(like);
         }
@@ -53,15 +53,15 @@ namespace Home.Habbeh.Presentation
         }
 
         [WebMethod]
-        public TbMessage CountNewMessage(String LastReadMessage)
+        public int CountNewMessage(String LastReadMessage)
         {
-            return Business.Message.newMessageCount(LastReadMessage);
+            return Business.Message.CountNewMessage(LastReadMessage);
         }
 
         [WebMethod]
-        public TbMessage CountLike(int messageid)
+        public int CountLike(int messageid)
         {
-            return Business.Message.LikeC(messageid);
+            return Business.Like.CountLike(messageid);
         }
     }
 }

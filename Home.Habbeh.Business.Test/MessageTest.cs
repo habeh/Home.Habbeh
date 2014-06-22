@@ -89,7 +89,7 @@ namespace Home.Habbeh.Business.Test
         [TestMethod()]
         public void ReadMessageTest()
         {
-            DateTime lastReadMessage = new DateTime(); // TODO: Initialize to an appropriate value
+            string lastReadMessage = "2014-01-01"; // TODO: Initialize to an appropriate value
             List<TbMessage> expected = null; // TODO: Initialize to an appropriate value
             List<TbMessage> actual;
             actual = Message.ReadMessage(lastReadMessage);

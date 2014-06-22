@@ -26,20 +26,11 @@ namespace Home.Habbeh.Business
         }
 
 
-        public static TbMessage newMessageCount(String lastReadMessage)
+        public static int CountNewMessage(string LastReadMessage)
         {
             using (DataAccess.Message db = new DataAccess.Message())
             {
-                return db.RetrieveListcount(lastReadMessage);
-            }  
-        }
-
-
-        public static TbMessage LikeC(int messageid)
-        {
-            using (DataAccess.Message db = new DataAccess.Message())
-            {
-                return db.RetrieveLikeCount(messageid);
+                return db.CountNewMessage(LastReadMessage);
             }
         }
     }

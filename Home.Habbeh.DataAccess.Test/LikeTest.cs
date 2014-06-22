@@ -82,5 +82,34 @@ namespace Home.Habbeh.DataAccess.Test
                 Assert.Fail(e.Message);
             }
         }
+
+        /// <summary>
+        ///A test for RetrieveCount
+        ///</summary>
+        [TestMethod()]
+        public void RetrieveCountTest()
+        {
+            Like target = new Like();
+            int messageId = 1;
+
+            int actual;
+            actual = target.RetrieveCount(messageId);
+            Assert.IsTrue(actual > 0);
+        }
+
+        /// <summary>
+        ///A test for Retrieve
+        ///</summary>
+        [TestMethod()]
+        public void RetrieveTest()
+        {
+            Like target = new Like();
+            int messageId = 1;
+            int userId = 27;
+
+            TbLike actual;
+            actual = target.Retrieve(messageId, userId);
+            Assert.IsNotNull(actual);
+        }
     }
 }
