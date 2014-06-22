@@ -38,18 +38,60 @@ namespace Home.Habbeh.DataAccess
             }
         }
 
-        public List<TbMessage> RetrieveList(DateTime lastReadMessage)
+        public List<TbMessage> RetrieveList(String lastUpdateMessage)
         {
             List<TbMessage> result = new List<TbMessage>();
             SqlCommand cmd = con.CreateCommand();
-            cmd.CommandText = "select * from TbMessage where SendDate > @SendDate";
-            cmd.Parameters.AddWithValue("@SendDate", lastReadMessage);
+
+            cmd.CommandText = @"SELECT  TbMessage.UserId, TbMessage.Id, TbMessage.SendDate, TbMessage.CategoryId, TbMessage.Description, TbMessage.RegisterDate, 
+            TbMessage.SendDate, TbCategory.Title FROM  TbCategory 
+                INNER JOIN TbMessage ON TbCategory.Id = TbMessage.CategoryId
+                    WHERE (TbMessage.SendDate > @SendDate)";
+
+            cmd.Parameters.AddWithValue("@SendDate", lastUpdateMessage);
             using (IDataReader reader = cmd.ExecuteReader())
             {
                 while (reader.Read())
                     result.Add(TbMessage.ToEntity(reader));
             }
             return result;
+        }
+
+        public TbMessage RetrieveListcount(String lastReadMessage)
+        {
+            TbMessage MessageCount = new TbMessage();
+            SqlCommand cmd = con.CreateCommand();
+            cmd.CommandText = "SELECT COUNT(Id) AS Count FROM  TbMessage where SendDate >= @SendDate";
+            cmd.Parameters.AddWithValue("@SendDate", lastReadMessage);
+            using (SqlDataReader reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    TbMessage Num = new TbMessage();
+                    Num.Count = Convert.ToInt32(reader["Count"]);
+                    return Num;
+                }
+            }
+            return null;
+        }
+
+
+        public TbMessage RetrieveLikeCount(int messageid)
+        {
+            
+            SqlCommand cmd = con.CreateCommand();
+            cmd.CommandText = "SELECT COUNT(Id) AS CountLike FROM  TbLike where MessageId = @MessageId";
+            cmd.Parameters.AddWithValue("@MessageId", messageid);
+            using (SqlDataReader reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    TbMessage NumLike = new TbMessage();
+                    NumLike.CountLike = Convert.ToInt32(reader["CountLike"]);
+                    return NumLike;
+                }
+            }
+            return null;
         }
     }
 }

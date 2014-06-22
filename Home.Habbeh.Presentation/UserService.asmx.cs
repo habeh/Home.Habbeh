@@ -43,14 +43,16 @@ namespace Home.Habbeh.Presentation
         }
 
         [WebMethod]
-        public TbUser GetProfile(string userName)
+        public TbUser GetProfile(int userid)
         {
-            return Business.User.GetProfile(userName);
+            return Business.User.GetProfile(userid);
         }
 
         [WebMethod]
-        public void SaveProfile(TbUser user)
+        public void SaveProfile(string username,string firstname, string lastname,string email,string status,string password)
         {
+            TbUser user = new TbUser() 
+            {UserName=username ,FirstName=firstname ,LastName=lastname ,Email=email ,Status=status ,Password=password  };
             Business.User.SaveProfile(user);
         }
 

@@ -21,11 +21,11 @@ namespace Home.Habbeh.DataAccess
         public void Create(TbUser user)
         {
             SqlCommand cmd = con.CreateCommand();
-            cmd.CommandText = "Insert Into TbUser (UserName,Email,Password,StatusId,RegisterDate) values (@UserName,@Email,@Password,@StatusId,@RegisterDate)";
+            cmd.CommandText = "Insert Into TbUser (UserName,Email,Password,Status,RegisterDate) values (@UserName,@Email,@Password,@Status,@RegisterDate)";
             cmd.Parameters.AddWithValue("@UserName", user.UserName);
             cmd.Parameters.AddWithValue("@Email", user.Email);
             cmd.Parameters.AddWithValue("@Password", user.Password);
-            cmd.Parameters.AddWithValue("@StatusId", user.StatusId);
+            cmd.Parameters.AddWithValue("@Status", user.Status);
             cmd.Parameters.AddWithValue("@RegisterDate", user.RegisterDate);
             cmd.ExecuteNonQuery();
         }
@@ -44,6 +44,20 @@ namespace Home.Habbeh.DataAccess
             SqlCommand cmd = con.CreateCommand();
             cmd.CommandText = "Select * from TbUser where UserName = @UserName";
             cmd.Parameters.AddWithValue("@UserName", username);
+            using (IDataReader reader = cmd.ExecuteReader())
+            {
+                if (reader.Read())
+                    return TbUser.ToEntity(reader);
+            }
+            return null;
+        }
+
+
+        public TbUser Retrieveuserid(int userid)
+        {
+            SqlCommand cmd = con.CreateCommand();
+            cmd.CommandText = "Select * from TbUser where Id = @Id";
+            cmd.Parameters.AddWithValue("@Id", userid);
             using (IDataReader reader = cmd.ExecuteReader())
             {
                 if (reader.Read())
@@ -91,14 +105,13 @@ namespace Home.Habbeh.DataAccess
         public void Update(TbUser user)
         {
             SqlCommand cmd = con.CreateCommand();
-            cmd.CommandText = "Update TbUser set FirstName=@FirstName , LastName=@LastName,Location=@Location,Password=@Password,PhoneNo=@PhoneNo,Picture=@Picture where UserName=@UserName";
+            cmd.CommandText = "Update TbUser set FirstName=@FirstName , LastName=@LastName,Status=@Status,Password=@Password,Email=@Email where UserName=@UserName";
             cmd.Parameters.AddWithValue("@UserName", user.UserName);
             cmd.Parameters.AddWithValue("@FirstName", user.FirstName);
             cmd.Parameters.AddWithValue("@LastName", user.LastName);
-            cmd.Parameters.AddWithValue("@Location", user.Location);
             cmd.Parameters.AddWithValue("@Password", user.Password);
-            cmd.Parameters.AddWithValue("@PhoneNo", user.PhoneNo);
-            cmd.Parameters.AddWithValue("@Picture", user.Picture);
+            cmd.Parameters.AddWithValue("@Status", user.Status);
+            cmd.Parameters.AddWithValue("@Email", user.Email);
 
             cmd.ExecuteNonQuery();
         }

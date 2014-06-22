@@ -13,7 +13,7 @@ namespace Home.Habbeh.Business
             using (DataAccess.Contact db = new DataAccess.Contact())
             {
                 contact.RegisterDate = DateTime.Now;
-                contact.Status = 1;
+                contact.Status = "1";
                 db.Create(contact);
             }
         }
