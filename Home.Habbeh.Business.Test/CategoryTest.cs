@@ -9,11 +9,11 @@ namespace Home.Habbeh.Business.Test
 
 
     /// <summary>
-    ///This is a test class for MessageTest and is intended
-    ///to contain all MessageTest Unit Tests
+    ///This is a test class for CategoryTest and is intended
+    ///to contain all CategoryTest Unit Tests
     ///</summary>
     [TestClass()]
-    public class MessageTest
+    public class CategoryTest
     {
 
 
@@ -67,49 +67,14 @@ namespace Home.Habbeh.Business.Test
 
 
         /// <summary>
-        ///A test for Create
+        ///A test for RetrieveList
         ///</summary>
         [TestMethod()]
-        public void CreateTest()
+        public void RetrieveListTest()
         {
-            TbMessage msg = new TbMessage() { CategoryId = 1, Description = "تست", RegisterDate = DateTime.Now, UserId = 27 };
-            try
-            {
-                Message.Create(msg);
-            }
-            catch (Exception e)
-            {
-                Assert.Fail(e.Message);
-            }
-        }
-
-        /// <summary>
-        ///A test for ReadMessage
-        ///</summary>
-        [TestMethod()]
-        public void ReadMessageTest()
-        {
-            string lastReadMessage = "2014-01-01"; // TODO: Initialize to an appropriate value            
-            List<TbMessage> actual;
-            actual = Message.ReadMessage(lastReadMessage);
+            List<TbCategory> actual;
+            actual = Category.RetrieveList();
             Assert.IsTrue(actual.Count > 0);
-        }
-
-        /// <summary>
-        ///A test for SendMessage
-        ///</summary>
-        [TestMethod()]
-        public void SendMessageTest()
-        {
-            int messageId = 1;
-            try
-            {
-                Message.SendMessage(messageId);
-            }
-            catch (Exception e)
-            {
-                Assert.Fail(e.Message);
-            }
         }
     }
 }

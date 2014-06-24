@@ -8,14 +8,21 @@ namespace Home.Habbeh.Business
 {
     public static class Like
     {
-        public static void Create(TbLike like)
+        public static bool Create(TbLike like)
         {
             using (DataAccess.Like db = new DataAccess.Like())
             {
                 TbLike duplike = db.Retrieve(like.MessageId, like.UserId);
                 if (duplike == null)
+                {
                     db.Create(like);
-                /* else Remove like */
+                    return true;
+                }
+                else
+                {
+                    db.Delete(like);
+                    return false;
+                }
             }
         }
 

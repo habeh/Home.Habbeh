@@ -53,7 +53,7 @@ namespace Home.Habbeh.Business
 
             SendEmail(email, EmailType.Forgive);
 
-            
+
         }
 
         public static TbUser Login(string userName, string password)
@@ -145,7 +145,6 @@ namespace Home.Habbeh.Business
 
         private static void SendEmail(string body, string email, string subject)
         {
-          
             MailMessage msg = new MailMessage();
             msg.From = new MailAddress("habbeh.info@gmail.com");
             msg.To.Add(email);
@@ -165,16 +164,20 @@ namespace Home.Habbeh.Business
             client.DeliveryMethod = SmtpDeliveryMethod.Network;
 
             client.Send(msg);
-
-
-
         }
 
-        private static void smtp_SendCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
+        public static void ChangePassword(string userName, string oldPass, string newPass)
         {
-            //TODO : delete some records from Database
-
+            using (DataAccess.User db = new DataAccess.User())
+            {
+                TbUser user = db.Retrieve(userName, oldPass);
+                if (user != null)
+                {
+                    user.Password = newPass;
+                    db.Update(user);
+                }
+                throw new HabbeException("رمز عبور فعلی اشتباه است");
+            }
         }
-
     }
 }

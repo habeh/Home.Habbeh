@@ -49,6 +49,7 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CategoryTest.cs" />
     <Compile Include="CommentTest.cs" />
     <Compile Include="ContactTest.cs" />
     <Compile Include="LikeTest.cs" />

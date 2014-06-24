@@ -36,14 +36,14 @@ namespace Home.Habbeh.Presentation
         }
 
         [WebMethod]
-        public void LikeMessage(int userId, int messageId)
+        public bool LikeMessage(int userId, int messageId)
         {
             TbLike like = new TbLike();
             like.UserId = userId;
             like.MessageId = messageId;
             like.Rank = 1;
 
-            Business.Like.Create(like);
+            return Business.Like.Create(like);
         }
 
         [WebMethod]
@@ -62,6 +62,18 @@ namespace Home.Habbeh.Presentation
         public int CountLike(int messageid)
         {
             return Business.Like.CountLike(messageid);
+        }
+
+        [WebMethod]
+        public List<TbCategory> RetrieveCategoryList()
+        {
+            return Business.Category.RetrieveList();
+        }
+
+        [WebMethod]
+        public void SendMessage(int messageId)
+        {
+            Business.Message.SendMessage(messageId);
         }
     }
 }

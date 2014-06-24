@@ -103,7 +103,7 @@ namespace Home.Habbeh.Business.Test
         [TestMethod()]
         public void GetProfileTest()
         {
-            int userId= 27;
+            int userId = 27;
             TbUser actual;
             actual = User.GetProfile(userId);
             Assert.IsNotNull(actual);
@@ -128,10 +128,17 @@ namespace Home.Habbeh.Business.Test
         [TestMethod()]
         public void ChangeStatusTest()
         {
-            string userId = ""; // TODO: Initialize to an appropriate value
-            int statusCode = 0; // TODO: Initialize to an appropriate value            
-            User.ChangeStatus(userId, statusCode);
-            Assert.Inconclusive("A method that does not return a value cannot be verified.");
+            string userName = "medusa";
+            int statusCode = 2;
+
+            try
+            {
+                User.ChangeStatus(userName, statusCode);
+            }
+            catch (Exception e)
+            {
+                Assert.Fail(e.Message);
+            }
         }
 
         [TestMethod()]
@@ -140,6 +147,25 @@ namespace Home.Habbeh.Business.Test
             string searchText = expected.UserName.Substring(0, 3);
             List<TbUser> actual = User.Search(searchText);
             Assert.IsTrue(actual.Count > 0);
+        }
+
+        /// <summary>
+        ///A test for ChangePassword
+        ///</summary>
+        [TestMethod()]
+        public void ChangePasswordTest()
+        {
+            string userName = "medusa";
+            string oldPass = "test";
+            string newPass = "t";
+            try
+            {
+                User.ChangePassword(userName, oldPass, newPass);
+            }
+            catch (Exception e)
+            {
+                Assert.Fail(e.Message);
+            }
         }
     }
 }

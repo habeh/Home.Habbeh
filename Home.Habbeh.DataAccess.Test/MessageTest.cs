@@ -119,5 +119,17 @@ namespace Home.Habbeh.DataAccess.Test
             Assert.IsTrue(actual > 0);
 
         }
+
+        /// <summary>
+        ///A test for Update
+        ///</summary>
+        [TestMethod()]
+        public void UpdateTest()
+        {
+            Message target = new Message(); // TODO: Initialize to an appropriate value
+            TbMessage msg = null; // TODO: Initialize to an appropriate value
+            target.Update(msg);
+            Assert.Inconclusive("A method that does not return a value cannot be verified.");
+        }
     }
 }

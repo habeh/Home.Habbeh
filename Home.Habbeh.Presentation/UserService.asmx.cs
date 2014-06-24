@@ -73,5 +73,11 @@ namespace Home.Habbeh.Presentation
         {
             Business.User.Follow(userName, followerUserName);
         }
+
+        [WebMethod]
+        public void ChangePassword(string userName, string oldPass, string newPass)
+        {
+            Business.User.ChangePassword(userName, oldPass, newPass);
+        }
     }
 }

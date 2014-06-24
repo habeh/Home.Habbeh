@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Category.cs" />
     <Compile Include="Comment.cs" />
     <Compile Include="Contact.cs" />
     <Compile Include="Like.cs" />

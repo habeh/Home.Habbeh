@@ -25,12 +25,23 @@ namespace Home.Habbeh.Business
             }
         }
 
-
         public static int CountNewMessage(string LastReadMessage)
         {
             using (DataAccess.Message db = new DataAccess.Message())
             {
                 return db.CountNewMessage(LastReadMessage);
+            }
+        }
+
+        public static void SendMessage(int messageId)
+        {
+            using (DataAccess.Message db = new DataAccess.Message())
+            {
+                TbMessage msg = db.Retrieve(messageId);
+
+                msg.SendDate = DateTime.Now;
+
+                db.Update(msg);
             }
         }
     }

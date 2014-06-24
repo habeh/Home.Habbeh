@@ -64,5 +64,14 @@ namespace Home.Habbeh.DataAccess
             }
             return 0;
         }
+
+        public void Delete(TbLike like)
+        {
+            SqlCommand cmd = con.CreateCommand();
+            cmd.CommandText = "delete from TbLike where UserId=@UserId and MessageId=@MessageId";
+            cmd.Parameters.AddWithValue("@MessageId", like.MessageId);
+            cmd.Parameters.AddWithValue("@UserId", like.UserId);
+            cmd.ExecuteNonQuery();
+        }
     }
 }

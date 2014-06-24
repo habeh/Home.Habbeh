@@ -9,5 +9,15 @@ namespace Home.Habbeh.Entity
     {
         public int Id { get; set; }
         public string Title { get; set; }
+
+        public static TbCategory ToEntity(System.Data.IDataReader reader)
+        {
+            TbCategory cat = null;
+            cat = new TbCategory();
+            cat.Id = Convert.ToInt32(reader["Id"]);
+            cat.Title = Convert.ToString(reader["Title"]);
+
+            return cat;
+        }
     }
 }

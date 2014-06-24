@@ -70,5 +70,34 @@ namespace Home.Habbeh.DataAccess
             }
             return 0;
         }
+
+        public TbMessage Retrieve(int messageId)
+        {
+            SqlCommand cmd = con.CreateCommand();
+
+            cmd.CommandText = @"SELECT  * from TbMessage where Id=@Id";
+
+            cmd.Parameters.AddWithValue("@Id", messageId);
+            using (IDataReader reader = cmd.ExecuteReader())
+            {
+                if (reader.Read())
+                    return TbMessage.ToEntity(reader);
+            }
+            return null;
+        }
+
+        public void Update(TbMessage msg)
+        {
+            SqlCommand cmd = con.CreateCommand();
+            cmd.CommandText = "Update TbMessage set CategoryId=@CategoryId , Description=@Description,RegisterDate=@RegisterDate,SendDate=@SendDate,UserId=@UserId where Id=@Id";
+            cmd.Parameters.AddWithValue("@CategoryId", msg.CategoryId);
+            cmd.Parameters.AddWithValue("@Description", msg.Description);
+            cmd.Parameters.AddWithValue("@RegisterDate", msg.RegisterDate);
+            cmd.Parameters.AddWithValue("@SendDate", msg.SendDate);
+            cmd.Parameters.AddWithValue("@UserId", msg.UserId);
+            cmd.Parameters.AddWithValue("@Id", msg.Id);
+
+            cmd.ExecuteNonQuery();
+        }
     }
 }
