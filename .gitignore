@@ -9,6 +9,7 @@
 *.csproj
 *.vsmdi
 *.testsettings
+*.config
 
 # Build results
 [Dd]ebug/
