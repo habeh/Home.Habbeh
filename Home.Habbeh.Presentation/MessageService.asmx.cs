@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Services;
 using Home.Habbeh.Entity;
+using Home.Habbeh.Entity.Common;
 
 namespace Home.Habbeh.Presentation
 {
@@ -19,61 +20,117 @@ namespace Home.Habbeh.Presentation
     {
 
         [WebMethod]
-        public string Ping()
+        public MethodResult Ping()
         {
-            return "Hello Message Service!";
+            return new MethodResult(false, "Hello Message Service!", null);
         }
 
         [WebMethod]
-        public void InsertMessage(int categoryId, int userId, string description)
+        public MethodResult InsertMessage(int categoryId, int userId, string description)
         {
-            TbMessage msg = new TbMessage();
-            msg.CategoryId = categoryId;
-            msg.UserId = userId;
-            msg.Description = description;
+            try
+            {
+                TbMessage msg = new TbMessage();
+                msg.CategoryId = categoryId;
+                msg.UserId = userId;
+                msg.Description = description;
 
-            Business.Message.Create(msg);
+                Business.Message.Create(msg);
+                return new MethodResult(false, null, null);
+            }
+            catch (HabbeException e)
+            {
+                return new MethodResult(true, e.Message, null);
+            }
         }
 
         [WebMethod]
-        public bool LikeMessage(int userId, int messageId)
+        public MethodResult LikeMessage(int userId, int messageId)
         {
-            TbLike like = new TbLike();
-            like.UserId = userId;
-            like.MessageId = messageId;
-            like.Rank = 1;
+            try
+            {
+                TbLike like = new TbLike();
+                like.UserId = userId;
+                like.MessageId = messageId;
+                like.Rank = 1;
 
-            return Business.Like.Create(like);
+                bool data = Business.Like.Create(like);
+                return new MethodResult(false, null, data);
+            }
+            catch (HabbeException e)
+            {
+                return new MethodResult(true, e.Message, null);
+            }
         }
 
         [WebMethod]
-        public List<TbMessage> ReadMessage(String lastUpdateMessage)
+        public MethodResult<TbMessage> ReadMessage(String lastUpdateMessage)
         {
-            return Business.Message.ReadMessage(lastUpdateMessage);
+            try
+            {
+                List<TbMessage> data = Business.Message.ReadMessage(lastUpdateMessage);
+                return new MethodResult<TbMessage>(false, null, data);
+            }
+            catch (HabbeException e)
+            {
+                return new MethodResult<TbMessage>(true, e.Message, null);
+            }
         }
 
         [WebMethod]
-        public int CountNewMessage(String LastReadMessage)
+        public MethodResult CountNewMessage(String LastReadMessage)
         {
-            return Business.Message.CountNewMessage(LastReadMessage);
+            try
+            {
+                int data = Business.Message.CountNewMessage(LastReadMessage);
+                return new MethodResult(false, null, data);
+            }
+            catch (HabbeException e)
+            {
+                return new MethodResult(true, e.Message, null);
+            }
         }
 
         [WebMethod]
-        public int CountLike(int messageid)
+        public MethodResult CountLike(int messageid)
         {
-            return Business.Like.CountLike(messageid);
+            try
+            {
+                int data = Business.Like.CountLike(messageid);
+                return new MethodResult(false, null, data);
+            }
+            catch (HabbeException e)
+            {
+                return new MethodResult(true, e.Message, null);
+            }
         }
 
         [WebMethod]
-        public List<TbCategory> RetrieveCategoryList()
+        public MethodResult<TbCategory> RetrieveCategoryList()
         {
-            return Business.Category.RetrieveList();
+            try
+            {
+                List<TbCategory> data = Business.Category.RetrieveList();
+                return new MethodResult<TbCategory>(false, null, data);
+            }
+            catch (HabbeException e)
+            {
+                return new MethodResult<TbCategory>(true, e.Message, null);
+            }
         }
 
         [WebMethod]
-        public void SendMessage(int messageId)
+        public MethodResult SendMessage(int messageId)
         {
-            Business.Message.SendMessage(messageId);
+            try
+            {
+                Business.Message.SendMessage(messageId);
+                return new MethodResult(false, null, null);
+            }
+            catch (HabbeException e)
+            {
+                return new MethodResult(true, e.Message, null);
+            }
         }
     }
 }

@@ -174,9 +174,12 @@ namespace Home.Habbeh.Business
                 if (user != null)
                 {
                     user.Password = newPass;
-                    db.Update(user);
+                    db.UpdatePassword(user);
                 }
-                throw new HabbeException("رمز عبور فعلی اشتباه است");
+                else
+                {
+                    throw new HabbeException("رمز عبور فعلی اشتباه است");
+                }
             }
         }
     }

@@ -42,10 +42,7 @@ namespace Home.Habbeh.DataAccess
             List<TbMessage> result = new List<TbMessage>();
             SqlCommand cmd = con.CreateCommand();
 
-            cmd.CommandText = @"SELECT  TbMessage.UserId, TbMessage.Id, TbMessage.SendDate, TbMessage.CategoryId, TbMessage.Description, TbMessage.RegisterDate, 
-            TbMessage.SendDate, TbCategory.Title as CategoryTitle FROM  TbCategory 
-                INNER JOIN TbMessage ON TbCategory.Id = TbMessage.CategoryId
-                    WHERE (TbMessage.SendDate > @SendDate)";
+            cmd.CommandText = @"SELECT  * from ViewTbMessage where SendDate>@SendDate";
 
             cmd.Parameters.AddWithValue("@SendDate", lastUpdateMessage);
             using (IDataReader reader = cmd.ExecuteReader())
@@ -74,8 +71,8 @@ namespace Home.Habbeh.DataAccess
         public TbMessage Retrieve(int messageId)
         {
             SqlCommand cmd = con.CreateCommand();
-
-            cmd.CommandText = @"SELECT  * from TbMessage where Id=@Id";
+            
+            cmd.CommandText = @"SELECT  * from ViewTbMessage where Id=@Id";
 
             cmd.Parameters.AddWithValue("@Id", messageId);
             using (IDataReader reader = cmd.ExecuteReader())

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Services;
 using Home.Habbeh.Entity;
+using Home.Habbeh.Entity.Common;
 
 namespace Home.Habbeh.Presentation
 {
@@ -18,66 +19,144 @@ namespace Home.Habbeh.Presentation
     public class UserService : System.Web.Services.WebService
     {
         [WebMethod]
-        public string Ping()
+        public MethodResult Ping()
         {
-            return "Hello User Service!";
+            return new MethodResult(false, "Hello UserService!", null);
         }
 
         [WebMethod]
-        public void Register(string userName, string email, string password)
+        public MethodResult Register(string userName, string email, string password)
         {
-            TbUser user = new TbUser() { UserName = userName, Email = email, Password = password };
-            Business.User.Register(user);
+            try
+            {
+                TbUser user = new TbUser() { UserName = userName, Email = email, Password = password };
+                Business.User.Register(user);
+                return new MethodResult(false, "ثبت نام با موفقیت انجام شد", null);
+            }
+            catch (HabbeException e)
+            {
+                return new MethodResult(true, e.Message, null);
+            }
         }
 
         [WebMethod]
-        public void SendForgiveInformation(string email)
-        {
-            Business.User.SendForgiveInformation(email);
+        public MethodResult SendForgiveInformation(string email)
+        {            
+            try
+            {
+                Business.User.SendForgiveInformation(email);
+                return new MethodResult(false, null, null);
+            }
+            catch (HabbeException e)
+            {
+                return new MethodResult(true, e.Message, null);
+            }
         }
 
         [WebMethod]
-        public TbUser Login(string userName, string password)
+        public MethodResult Login(string userName, string password)
         {
-            return Business.User.Login(userName, password);
+            try
+            {
+                TbUser user = Business.User.Login(userName, password);
+                if (user != null)
+                {
+                    return new MethodResult(false, null, user);
+                }
+                else
+                {
+                    return new MethodResult(true, "نام کاربری یا رمز عبور اشتباه می باشد", null);
+                }
+            }
+            catch (HabbeException e)
+            {
+                return new MethodResult(true, e.Message, null);
+            }
         }
 
         [WebMethod]
-        public TbUser GetProfile(int userid)
+        public MethodResult GetProfile(int userid)
         {
-            return Business.User.GetProfile(userid);
+            try
+            {
+                TbUser user = Business.User.GetProfile(userid);
+                return new MethodResult(false, null, user);
+            }
+            catch (HabbeException e)
+            {
+                return new MethodResult(true, e.Message, null);
+            }
         }
 
         [WebMethod]
-        public void SaveProfile(string username,string firstname, string lastname,string email,string status,string password)
+        public MethodResult SaveProfile(string username, string firstname, string lastname, string email, string status)
         {
-            TbUser user = new TbUser() 
-            {UserName=username ,FirstName=firstname ,LastName=lastname ,Email=email ,Status=status ,Password=password  };
-            Business.User.SaveProfile(user);
+            try
+            {
+                TbUser user = new TbUser() { UserName = username, FirstName = firstname, LastName = lastname, Email = email, Status = status };
+                Business.User.SaveProfile(user);
+                return new MethodResult(false, null, null);
+            }
+            catch (HabbeException e)
+            {
+                return new MethodResult(true, e.Message, null);
+            }
         }
 
         [WebMethod]
-        public List<TbUser> Search(string searchText)
+        public MethodResult<TbUser> Search(string searchText)
         {
-            return Business.User.Search(searchText);
+            try
+            {
+                List<TbUser> data = Business.User.Search(searchText);
+                return new MethodResult<TbUser>(false, null, data);
+            }
+            catch (HabbeException e)
+            {
+                return new MethodResult<TbUser>(true, e.Message, null);
+            }
         }
 
         [WebMethod]
-        public void ChangeStatus(string userName, int statusId)
+        public MethodResult ChangeStatus(string userName, int statusId)
         {
-            Business.User.ChangeStatus(userName, statusId);
+            try
+            {
+                Business.User.ChangeStatus(userName, statusId);
+                return new MethodResult(false, null, null);
+            }
+            catch (HabbeException e)
+            {
+                return new MethodResult(true, e.Message, null);
+            }
         }
 
         [WebMethod]
-        public void Follow(string userName, string followerUserName)
-        {
-            Business.User.Follow(userName, followerUserName);
+        public MethodResult Follow(string userName, string followerUserName)
+        {            
+            try
+            {
+                Business.User.Follow(userName, followerUserName);
+                return new MethodResult(false, null, null);
+            }
+            catch (HabbeException e)
+            {
+                return new MethodResult(true, e.Message, null);
+            }
         }
 
         [WebMethod]
-        public void ChangePassword(string userName, string oldPass, string newPass)
-        {
-            Business.User.ChangePassword(userName, oldPass, newPass);
+        public MethodResult ChangePassword(string userName, string oldPass, string newPass)
+        {            
+            try
+            {
+                Business.User.ChangePassword(userName, oldPass, newPass);
+                return new MethodResult(false, null, null);
+            }
+            catch (HabbeException e)
+            {
+                return new MethodResult(true, e.Message, null);
+            }
         }
     }
 }

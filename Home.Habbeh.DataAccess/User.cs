@@ -104,11 +104,10 @@ namespace Home.Habbeh.DataAccess
         public void Update(TbUser user)
         {
             SqlCommand cmd = con.CreateCommand();
-            cmd.CommandText = "Update TbUser set FirstName=@FirstName , LastName=@LastName,Status=@Status,Password=@Password,Email=@Email where UserName=@UserName";
+            cmd.CommandText = "Update TbUser set FirstName=@FirstName , LastName=@LastName,Status=@Status,Email=@Email where UserName=@UserName";
             cmd.Parameters.AddWithValue("@UserName", user.UserName);
             cmd.Parameters.AddWithValue("@FirstName", user.FirstName);
             cmd.Parameters.AddWithValue("@LastName", user.LastName);
-            cmd.Parameters.AddWithValue("@Password", user.Password);
             cmd.Parameters.AddWithValue("@Status", user.Status);
             cmd.Parameters.AddWithValue("@Email", user.Email);
 
@@ -122,5 +121,14 @@ namespace Home.Habbeh.DataAccess
                 con.Dispose();
             }
         }
+
+       public void UpdatePassword(TbUser user)
+         {
+             SqlCommand cmd = con.CreateCommand();
+             cmd.CommandText = "Update TbUser set Password=@Password where UserName=@UserName";
+             cmd.Parameters.AddWithValue("@UserName", user.UserName);
+             cmd.Parameters.AddWithValue("@Password", user.Password );
+             cmd.ExecuteNonQuery();
+         }
     }
 }

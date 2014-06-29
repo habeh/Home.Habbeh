@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Services;
 using Home.Habbeh.Entity;
+using Home.Habbeh.Entity.Common;
 
 namespace Home.Habbeh.Presentation
 {
@@ -18,27 +19,43 @@ namespace Home.Habbeh.Presentation
     public class CommentService : System.Web.Services.WebService
     {
         [WebMethod]
-        public string Ping()
+        public MethodResult Ping()
         {
-            return "Hello Comment Service!";
+            return new MethodResult(false, "Hello Comment Service", null);
         }
 
         [WebMethod]
-        public void Create(int userId, int messageId, string description)
+        public MethodResult Create(int userId, int messageId, string description)
         {
-            TbComment comment = new TbComment();
-            comment.UserId = userId;
-            comment.MessageId = messageId;
-            comment.Description = description;
-            comment.CommentTypeId = 1;
+            try
+            {
+                TbComment comment = new TbComment();
+                comment.UserId = userId;
+                comment.MessageId = messageId;
+                comment.Description = description;
+                comment.CommentTypeId = 1;
 
-            Business.Comment.Create(comment);
+                Business.Comment.Create(comment);
+                return new MethodResult(false, null, null);
+            }
+            catch (HabbeException e)
+            {
+                return new MethodResult(true, e.Message, null);
+            }
         }
 
         [WebMethod]
-        public List<TbComment> Retrieve(int messageId)
+        public MethodResult<TbComment> Retrieve(int messageId)
         {
-            return Business.Comment.RetrieveList(messageId);
+            try
+            {
+                List<TbComment> data = Business.Comment.RetrieveList(messageId);
+                return new MethodResult<TbComment>(false, null, data);
+            }
+            catch (HabbeException e)
+            {
+                return new MethodResult<TbComment>(true, e.Message, null);
+            }
         }
     }
 }

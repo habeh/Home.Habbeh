@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Services;
 using Home.Habbeh.Entity;
+using Home.Habbeh.Entity.Common;
 
 namespace Home.Habbeh.Presentation
 {
@@ -19,18 +20,26 @@ namespace Home.Habbeh.Presentation
     {
 
         [WebMethod]
-        public string Ping()
+        public MethodResult Ping()
         {
-            return "Hello Contact Service";
+            return new MethodResult(false, "Hello Contact Service", null);
         }
 
         [WebMethod]
-        public void Create(int userId, string description)
+        public MethodResult Create(int userId, string description)
         {
-            TbContact contact = new TbContact();
-            contact.UserId = userId;
-            contact.Description = description;
-            Business.Contact.Create(contact);
+            try
+            {
+                TbContact contact = new TbContact();
+                contact.UserId = userId;
+                contact.Description = description;
+                Business.Contact.Create(contact);
+                return new MethodResult(false, null, null);
+            }
+            catch (HabbeException e)
+            {
+                return new MethodResult(true, e.Message, null);
+            }
         }
     }
 }
