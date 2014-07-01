@@ -89,11 +89,11 @@ namespace Home.Habbeh.Presentation
         }
 
         [WebMethod]
-        public MethodResult SaveProfile(string username, string firstname, string lastname, string email, string status)
+        public MethodResult SaveProfile(string username, string firstname, string lastname, string email, string status,string picture)
         {
             try
             {
-                TbUser user = new TbUser() { UserName = username, FirstName = firstname, LastName = lastname, Email = email, Status = status };
+                TbUser user = new TbUser() { UserName = username, FirstName = firstname, LastName = lastname, Email = email, Status = status, Picture = picture };
                 Business.User.SaveProfile(user);
                 return new MethodResult(false, null, null);
             }

@@ -52,7 +52,7 @@ namespace Home.Habbeh.DataAccess
             return null;
         }
 
-        public TbUser Retrieveuserid(int userid)
+        public TbUser Retrieve(int userid)
         {
             SqlCommand cmd = con.CreateCommand();
             cmd.CommandText = "Select * from TbUser where Id = @Id";
@@ -104,12 +104,13 @@ namespace Home.Habbeh.DataAccess
         public void Update(TbUser user)
         {
             SqlCommand cmd = con.CreateCommand();
-            cmd.CommandText = "Update TbUser set FirstName=@FirstName , LastName=@LastName,Status=@Status,Email=@Email where UserName=@UserName";
+            cmd.CommandText = "Update TbUser set FirstName=@FirstName , LastName=@LastName,Status=@Status,Email=@Email,Picture=@Picture where UserName=@UserName";
             cmd.Parameters.AddWithValue("@UserName", user.UserName);
             cmd.Parameters.AddWithValue("@FirstName", user.FirstName);
             cmd.Parameters.AddWithValue("@LastName", user.LastName);
             cmd.Parameters.AddWithValue("@Status", user.Status);
             cmd.Parameters.AddWithValue("@Email", user.Email);
+            cmd.Parameters.AddWithValue("@Picture", user.Picture);
 
             cmd.ExecuteNonQuery();
         }
