@@ -49,11 +49,7 @@ namespace Home.Habbeh.Business
 
         public static void SendForgiveInformation(string email)
         {
-
-
             SendEmail(email, EmailType.Forgive);
-
-
         }
 
         public static TbUser Login(string userName, string password)
@@ -70,11 +66,23 @@ namespace Home.Habbeh.Business
             }
         }
 
-        public static TbUser GetProfile(int userid)
+        public static TbUser GetProfile(int userId)
         {
-            using (DataAccess.User db = new DataAccess.User())
+            if (userId > 0)
             {
-                return db.Retrieveuserid(userid);
+                using (DataAccess.User db = new DataAccess.User())
+                {
+                    TbUser user =  db.Retrieve(userId);
+                    if (user == null)
+                    {
+                        throw new HabbeException("پروفایل کاربر یافت نشد");
+                    }
+                    return user;
+                }
+            }
+            else
+            {
+                throw new HabbeException("شناسه کاربر نامعتبر است");
             }
         }
 
