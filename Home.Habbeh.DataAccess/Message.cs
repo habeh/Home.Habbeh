@@ -21,10 +21,11 @@ namespace Home.Habbeh.DataAccess
         public void Create(TbMessage msg)
         {
             SqlCommand cmd = con.CreateCommand();
-            cmd.CommandText = "Insert Into TbMessage (CategoryId,UserId,RegisterDate,Description) values (@CategoryId,@UserId,@RegisterDate,@Description)";
+            cmd.CommandText = "Insert Into TbMessage (CategoryId,UserId,RegisterDate,SendDate,Description) values (@CategoryId,@UserId,@RegisterDate,@SendDate,@Description)";
             cmd.Parameters.AddWithValue("@CategoryId", msg.CategoryId);
             cmd.Parameters.AddWithValue("@UserId", msg.UserId);
             cmd.Parameters.AddWithValue("@RegisterDate", msg.RegisterDate);
+            cmd.Parameters.AddWithValue("@SendDate", msg.SendDate);
             cmd.Parameters.AddWithValue("@Description", msg.Description);
             cmd.ExecuteNonQuery();
         }
@@ -52,6 +53,23 @@ namespace Home.Habbeh.DataAccess
             }
             return result;
         }
+
+        public List<TbMessage> RetrieveUserMessageList(int userId)
+        {
+            List<TbMessage> result = new List<TbMessage>();
+            SqlCommand cmd = con.CreateCommand();
+
+            cmd.CommandText = @"SELECT  * from ViewTbMessage where UserId=@UserId";
+
+            cmd.Parameters.AddWithValue("@UserId", userId);
+            using (IDataReader reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                    result.Add(TbMessage.ToEntity(reader));
+            }
+            return result;
+        }
+
 
         public int CountNewMessage(string LastReadMessage)
         {

@@ -26,6 +26,14 @@ namespace Home.Habbeh.Business
             }
         }
 
+        public static List<TbMessage> ReadUserMessage(int userId)
+        {
+            using (DataAccess.Message db = new DataAccess.Message())
+            {
+                return db.RetrieveUserMessageList(userId);
+            }
+        }
+
         public static int CountNewMessage(string LastReadMessage)
         {
             using (DataAccess.Message db = new DataAccess.Message())
