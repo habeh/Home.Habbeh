@@ -54,6 +54,23 @@ namespace Home.Habbeh.DataAccess
             return result;
         }
 
+        public List<TbMessage> RetrieveUserMessageList(int userId)
+        {
+            List<TbMessage> result = new List<TbMessage>();
+            SqlCommand cmd = con.CreateCommand();
+
+            cmd.CommandText = @"SELECT  * from ViewTbMessage where UserId=@UserId";
+
+            cmd.Parameters.AddWithValue("@UserId", userId);
+            using (IDataReader reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                    result.Add(TbMessage.ToEntity(reader));
+            }
+            return result;
+        }
+
+
         public int CountNewMessage(string LastReadMessage)
         {
             SqlCommand cmd = con.CreateCommand();

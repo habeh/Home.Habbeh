@@ -132,5 +132,20 @@ namespace Home.Habbeh.Presentation
                 return new MethodResult(true, e.Message, null);
             }
         }
+
+
+        [WebMethod]
+        public MethodResult<TbMessage> ReadUserMessage(int userId)
+        {
+            try
+            {
+                List<TbMessage> data = Business.Message.ReadUserMessage(userId);
+                return new MethodResult<TbMessage>(false, null, data);
+            }
+            catch (HabbeException e)
+            {
+                return new MethodResult<TbMessage>(true, e.Message, null);
+            }
+        }
     }
 }
