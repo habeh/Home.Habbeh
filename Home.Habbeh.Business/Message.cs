@@ -13,7 +13,7 @@ namespace Home.Habbeh.Business
             using (DataAccess.Message db = new DataAccess.Message())
             {
                 msg.RegisterDate = DateTime.Now;
-                msg.SendDate = DateTime.Now;
+                msg.SendDate = msg.RegisterDate;
                 db.Create(msg);
             }
         }
