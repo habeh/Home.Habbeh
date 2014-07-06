@@ -52,24 +52,23 @@ namespace Home.Habbeh.DataAccess
 
         public  String Check(int userId,int friendId)
         {
-            
+            String state = null;
             SqlCommand cmd = con.CreateCommand();
             cmd.CommandText = "Select * from TbUserFriend where UserId=@UserId And FriendId=@FriendId";
             cmd.Parameters.AddWithValue("@UserId", userId);
             cmd.Parameters.AddWithValue("@FriendId", friendId);
-            using (IDataReader reader = cmd.ExecuteReader())
+            using (SqlDataReader reader = cmd.ExecuteReader())
             {
-                if (reader.Read())
-                {
-                    return "true";
-                }
-                else
-                {
-                    return "false";
-                }
+                while (reader.Read())
+                    state = reader["Accept"].ToString();
+                if (!reader.HasRows) return "false";
             }
+            if (state.Equals("true")) return "true";
+            if (state.Equals("false")) return "pending";
+            
             return null;
         }
+
 
         public void Dispose()
         {
