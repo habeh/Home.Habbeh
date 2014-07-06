@@ -12,6 +12,11 @@ namespace Home.Habbeh.Entity
         public int FriendId { get; set; }
         public String FriendUserName { get; set; }
         public String Accept { get; set; }
+        public String Status { get; set; }
+        public String Picture { get; set; }
+        public String FirstName { get; set; }
+        public String LastName { get; set; }
+        public String Location { get; set; }
         
         
 
@@ -27,6 +32,11 @@ namespace Home.Habbeh.Entity
             userfriend.FriendId = Convert.ToInt32(reader["FriendId"]);
             userfriend.FriendUserName = reader["FriendUserName"].ToString();
             userfriend.Accept = reader["Accept"].ToString();
+            userfriend.Status = reader["Status"].ToString();
+            userfriend.Picture = reader["Picture"].ToString();
+            userfriend.FirstName = reader["FirstName"].ToString();
+            userfriend.LastName = reader["LastName"].ToString();
+            userfriend.Location = reader["Location"].ToString();
             
             
 
