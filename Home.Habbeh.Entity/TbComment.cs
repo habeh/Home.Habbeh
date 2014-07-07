@@ -10,6 +10,7 @@ namespace Home.Habbeh.Entity
         /// <remarks></remarks>
         public int Id { get; set; }
         public int UserId { get; set; }
+        public int ReportUserId { get; set; }
         public int MessageId { get; set; }
         public DateTime RegisterDate { get; set; }
         public int CommentTypeId { get; set; }
@@ -23,6 +24,7 @@ namespace Home.Habbeh.Entity
             comment.MessageId = Convert.ToInt32(reader["MessageId"]);
             comment.CommentTypeId = Convert.ToInt32(reader["CommentTypeId"]);
             comment.UserId = Convert.ToInt32(reader["UserId"]);
+            comment.ReportUserId = Convert.ToInt32(reader["ReportUserId"]);
             comment.Description = Convert.ToString(reader["Description"]);
             comment.RegisterDate = Convert.ToDateTime(reader["RegisterDate"]);
 

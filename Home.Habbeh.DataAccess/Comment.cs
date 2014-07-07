@@ -21,9 +21,10 @@ namespace Home.Habbeh.DataAccess
         public void Create(TbComment comment)
         {
             SqlCommand cmd = con.CreateCommand();
-            cmd.CommandText = "Insert Into TbComment (CommentTypeId,UserId,MessageId,Description,RegisterDate) values (@CommentTypeId,@UserId,@MessageId,@Description,@RegisterDate)";
+            cmd.CommandText = "Insert Into TbComment (CommentTypeId,UserId,ReportUserId,MessageId,Description,RegisterDate) values (@CommentTypeId,@UserId,@ReportUserId,@MessageId,@Description,@RegisterDate)";
             cmd.Parameters.AddWithValue("@MessageId", comment.MessageId);
             cmd.Parameters.AddWithValue("@UserId", comment.UserId);
+            cmd.Parameters.AddWithValue("@ReportUserId", comment.ReportUserId);
             cmd.Parameters.AddWithValue("@CommentTypeId", comment.CommentTypeId);
             cmd.Parameters.AddWithValue("@Description", comment.Description);
             cmd.Parameters.AddWithValue("@RegisterDate", comment.RegisterDate);
