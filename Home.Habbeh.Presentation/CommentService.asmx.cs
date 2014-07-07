@@ -25,18 +25,29 @@ namespace Home.Habbeh.Presentation
         }
 
         [WebMethod]
-        public MethodResult Create(int userId, int messageId, string description)
+        public MethodResult Create(int userId, int offendingUserId, int messageId, string description, int commentTypeId)
         {
             try
             {
                 TbComment comment = new TbComment();
+                String SetDecription = "این کاربر تخلف کرده است. لطفا بررسی شود";
+
                 comment.UserId = userId;
-                comment.MessageId = messageId;
                 comment.Description = description;
-                comment.CommentTypeId = 1;
+                comment.CommentTypeId = commentTypeId;
+                if (commentTypeId.Equals(2))
+                {
+                    comment.OffendingUserId = offendingUserId;
+                    comment.Description = SetDecription;
+ 
+                }
+                else
+                {
+                    comment.MessageId = messageId;
+                }
 
                 Business.Comment.Create(comment);
-                return new MethodResult(false, null, null);
+                return new MethodResult(false, " نظر ارسالی با موفقیت ثبت شد ", null);
             }
             catch (HabbeException e)
             {

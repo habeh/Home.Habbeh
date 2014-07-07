@@ -32,7 +32,7 @@ namespace Home.Habbeh.Presentation
             try
             {
                 Business.UserFriend.Create(userId, friendId);
-                return new MethodResult(true, "درخواست دوستی با موفقیت ارسال شد  ", null);
+                return new MethodResult(false, "درخواست دوستی با موفقیت ارسال شد  ", null);
             }
             catch (HabbeException e)
             {
@@ -48,7 +48,7 @@ namespace Home.Habbeh.Presentation
             try
             {
                 Business.UserFriend.Accept(id);
-                return new MethodResult(true, "درخواست دوستی تائید شد", null);
+                return new MethodResult(false, "درخواست دوستی تائید شد", null);
             }
             catch (HabbeException e)
             {

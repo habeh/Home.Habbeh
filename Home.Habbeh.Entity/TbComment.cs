@@ -10,6 +10,7 @@ namespace Home.Habbeh.Entity
         /// <remarks></remarks>
         public int Id { get; set; }
         public int UserId { get; set; }
+        public int OffendingUserId { get; set; }
         public int MessageId { get; set; }
         public DateTime RegisterDate { get; set; }
         public int CommentTypeId { get; set; }
@@ -20,9 +21,12 @@ namespace Home.Habbeh.Entity
             TbComment comment = null;
             comment = new TbComment();
             comment.Id = Convert.ToInt32(reader["Id"]);
+            if (reader["MessageId"] != DBNull.Value)
             comment.MessageId = Convert.ToInt32(reader["MessageId"]);
             comment.CommentTypeId = Convert.ToInt32(reader["CommentTypeId"]);
             comment.UserId = Convert.ToInt32(reader["UserId"]);
+            if (reader["OffendingUserId"] != DBNull.Value)
+            comment.OffendingUserId = Convert.ToInt32(reader["OffendingUserId"]);
             comment.Description = Convert.ToString(reader["Description"]);
             comment.RegisterDate = Convert.ToDateTime(reader["RegisterDate"]);
 
