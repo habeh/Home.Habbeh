@@ -31,7 +31,7 @@ namespace Home.Habbeh.DataAccess
             List<TbCategory> result = new List<TbCategory>();
             SqlCommand cmd = con.CreateCommand();
 
-            cmd.CommandText = @"SELECT * from TbCategory";
+            cmd.CommandText = @"SELECT DISTINCT c.Id, c.Title FROM TbCategory AS c INNER JOIN  TbMessage AS m ON c.Id = m.CategoryId";
             using (IDataReader reader = cmd.ExecuteReader())
             {
                 while (reader.Read())
