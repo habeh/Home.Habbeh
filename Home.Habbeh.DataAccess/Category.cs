@@ -26,12 +26,26 @@ namespace Home.Habbeh.DataAccess
             }
         }
 
-        public List<TbCategory> RetrieveList()
+        public List<TbCategory> RetrieveUsedList()
         {
             List<TbCategory> result = new List<TbCategory>();
             SqlCommand cmd = con.CreateCommand();
 
             cmd.CommandText = @"SELECT DISTINCT c.Id, c.Title FROM TbCategory AS c INNER JOIN  TbMessage AS m ON c.Id = m.CategoryId";
+            using (IDataReader reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                    result.Add(TbCategory.ToEntity(reader));
+            }
+            return result;
+        }
+
+        public List<TbCategory> RetrieveList()
+        {
+            List<TbCategory> result = new List<TbCategory>();
+            SqlCommand cmd = con.CreateCommand();
+
+            cmd.CommandText = @"SELECT * FROM TbCategory";
             using (IDataReader reader = cmd.ExecuteReader())
             {
                 while (reader.Read())

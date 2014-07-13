@@ -11,9 +11,16 @@ namespace Home.Habbeh.Business
         public static List<TbCategory> RetrieveList()
         {
             using (DataAccess.Category db = new DataAccess.Category())
-            {
-                
+            {                
                 return db.RetrieveList();
+            }
+        }
+
+        public static List<TbCategory> RetrieveUsedList()
+        {
+            using (DataAccess.Category db = new DataAccess.Category())
+            {
+                return db.RetrieveUsedList();
             }
         }
     }
