@@ -120,6 +120,20 @@ namespace Home.Habbeh.Presentation
         }
 
         [WebMethod]
+        public MethodResult<TbCategory> RetrieveCategoryUsedList()
+        {
+            try
+            {
+                List<TbCategory> data = Business.Category.RetrieveUsedList();
+                return new MethodResult<TbCategory>(false, null, data);
+            }
+            catch (HabbeException e)
+            {
+                return new MethodResult<TbCategory>(true, e.Message, null);
+            }
+        }
+
+        [WebMethod]
         public MethodResult SendMessage(int messageId)
         {
             try
