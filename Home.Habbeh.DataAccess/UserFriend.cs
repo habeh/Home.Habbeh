@@ -36,6 +36,14 @@ namespace Home.Habbeh.DataAccess
             cmd.ExecuteNonQuery();
         }
 
+        public void Delete(int id)
+        {
+            SqlCommand cmd = con.CreateCommand();
+            cmd.CommandText = "delete from TbUserFriend  where Id=@Id";
+            cmd.Parameters.AddWithValue("@Id", id);
+            cmd.ExecuteNonQuery();
+        }
+
         public List<TbUserFriend> RetrieveList(int userId)
         {
             List<TbUserFriend> result = new List<TbUserFriend>();

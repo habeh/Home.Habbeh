@@ -29,6 +29,15 @@ namespace Home.Habbeh.Business
             }
         }
 
+        public static void Reject(int id)
+        {
+            using (DataAccess.UserFriend db = new DataAccess.UserFriend())
+            {
+
+                db.Delete(id);
+            }
+        }
+
         public static List<TbUserFriend> Search(int userId)
         {
             using (DataAccess.UserFriend db = new DataAccess.UserFriend())
