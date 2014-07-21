@@ -58,6 +58,21 @@ namespace Home.Habbeh.Presentation
 
 
         [WebMethod]
+        public MethodResult FriendRejectRequest(int id)
+        {
+            try
+            {
+                Business.UserFriend.Reject(id);
+                return new MethodResult(false, "درخواست دوستی رد شد", null);
+            }
+            catch (HabbeException e)
+            {
+                return new MethodResult(true, e.Message, null);
+            }
+        }
+
+
+        [WebMethod]
         public MethodResult<TbUserFriend> FriendList(int userId)
         {
             try
