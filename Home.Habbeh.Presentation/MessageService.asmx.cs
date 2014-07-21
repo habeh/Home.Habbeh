@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Services;
 using Home.Habbeh.Entity;
 using Home.Habbeh.Entity.Common;
+using System.Web.Script.Serialization;
 
 namespace Home.Habbeh.Presentation
 {
@@ -15,7 +16,7 @@ namespace Home.Habbeh.Presentation
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
     [System.ComponentModel.ToolboxItem(false)]
     // To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
-    // [System.Web.Script.Services.ScriptService]
+    //[System.Web.Script.Services.ScriptService]
     public class MessageService : System.Web.Services.WebService
     {
 
@@ -63,6 +64,7 @@ namespace Home.Habbeh.Presentation
             }
         }
 
+        
         [WebMethod]
         public MethodResult<TbMessage> ReadMessage(String lastUpdateMessage)
         {
@@ -111,7 +113,7 @@ namespace Home.Habbeh.Presentation
             try
             {
                 List<TbCategory> data = Business.Category.RetrieveList();
-                return new MethodResult<TbCategory>(false, null, data);
+                return new MethodResult<TbCategory>(false, null, data);                
             }
             catch (HabbeException e)
             {

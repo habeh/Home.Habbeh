@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Runtime.Serialization;
 
 namespace Home.Habbeh.Entity.Common
 {
@@ -17,8 +18,11 @@ namespace Home.Habbeh.Entity.Common
             Message = msg;
             Data = data;
         }
+        
         public bool HasError { get; set; }
+
         public string Message { get; set; }
+        
         public object Data { get; set; }
     }
 

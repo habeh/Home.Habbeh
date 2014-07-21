@@ -2,18 +2,35 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Runtime.Serialization;
 
 namespace Home.Habbeh.Entity
 {
+    [DataContract]
     public class TbMessage
     {
+        [DataMember]
         public int Id { get; set; }
+
+        [DataMember]
         public int CategoryId { get; set; }
+
+        [DataMember]
         public String CategoryTitle { get; set; }
+
+        [DataMember]
         public int UserId { get; set; }
+
+        [DataMember]
         public DateTime RegisterDate { get; set; }
+
+        [DataMember]
         public DateTime SendDate { get; set; }
+
+        [DataMember]
         public string Description { get; set; }
+
+        [DataMember]
         public int Share { get; set; }
 
         public static TbMessage ToEntity(System.Data.IDataReader reader)
